@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1267420667552549973}
   - component: {fileID: 1749495313293501342}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: GreenEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,6 +130,8 @@ MonoBehaviour:
   _rigidbody: {fileID: 5225264230982544629}
   _enemyAwareness: {fileID: 1267420667552549973}
   _targetDirection: {x: 0, y: 0}
+  _wanderDistance: 8
+  _newWanderTargetPointDelay: 2
   _movementSpeed: 10
   _acceleration: 0.3
 --- !u!114 &1267420667552549973

@@ -11,11 +11,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _acceleration;
     private Vector2 _velocity = Vector2.zero;
-    private Camera _camera;
-    private void Awake()
-    {
-        _camera = Camera.main;
-    }
     private void FixedUpdate()
     {
         _velocity = Vector2.Lerp(_velocity, _movementInput * _movementSpeed, _acceleration);
