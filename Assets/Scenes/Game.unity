@@ -1062,7 +1062,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.89, y: 6.6}
+  m_Size: {x: 3.03, y: 6.6}
   m_EdgeRadius: 0
 --- !u!114 &1972815767
 MonoBehaviour:
