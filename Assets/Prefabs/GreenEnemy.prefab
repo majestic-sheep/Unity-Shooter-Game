@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2717475082040350250}
   - component: {fileID: 5385444530650224452}
   - component: {fileID: 5225264230982544629}
+  - component: {fileID: 1749495313293501342}
   - component: {fileID: 3593343808227082030}
   - component: {fileID: 1267420667552549973}
-  - component: {fileID: 1749495313293501342}
+  - component: {fileID: -4927440260038891832}
   m_Layer: 0
   m_Name: GreenEnemy
   m_TagString: Untagged
@@ -115,38 +116,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3593343808227082030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8451858921245095786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f3ad651a82ab74a8d7bc9a42f3b133, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 5225264230982544629}
-  _enemyAwareness: {fileID: 1267420667552549973}
-  _targetDirection: {x: 0, y: 0}
-  _wanderDistance: 8
-  _newWanderTargetPointDelay: 2
-  _movementSpeed: 10
-  _acceleration: 0.3
---- !u!114 &1267420667552549973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8451858921245095786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548ecc4bf1868db488bb821ba744e73f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 15
 --- !u!61 &1749495313293501342
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -192,3 +161,49 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.89, y: 6.06}
   m_EdgeRadius: 0
+--- !u!114 &3593343808227082030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451858921245095786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f3ad651a82ab74a8d7bc9a42f3b133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 5225264230982544629}
+  _enemyAwareness: {fileID: 1267420667552549973}
+  _targetDirection: {x: 0, y: 0}
+  _wanderDistance: 8
+  _newWanderTargetPointDelay: 2
+  _movementSpeed: 10
+  _acceleration: 0.3
+--- !u!114 &1267420667552549973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451858921245095786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548ecc4bf1868db488bb821ba744e73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAwarenessDistance: 15
+--- !u!114 &-4927440260038891832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451858921245095786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc7ca1aac07f914c9c0940bfaf7e805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackDamage: 10
+  _attackDelay: 0.5
