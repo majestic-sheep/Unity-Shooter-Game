@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float _maximumHealth;
     [SerializeField] private float _currentHealth;
+    [SerializeField] private bool _destroyOnDeath;
+    [SerializeField] private float _destroyDelay;
     public float PercentHealth
     {
         get
@@ -20,7 +22,14 @@ public class Health : MonoBehaviour
     {
         _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maximumHealth);
         OnHealthChanged.Invoke();
-        if (_currentHealth == 0) OnDied.Invoke();
+        if (_currentHealth == 0)
+        {
+            OnDied.Invoke();
+            if (_destroyOnDeath)
+            {
+                Destroy(gameObject, _destroyDelay);
+            }
+        }
     }
     public void Heal(float heal)
     {

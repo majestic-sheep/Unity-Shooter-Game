@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     private Camera _camera;
     private readonly float _offScreenAllowableMargin = 20f;
+    [SerializeField] private float _bulletDamage = 5f;
     private void Awake()
     {
         _camera = Camera.main;
@@ -14,7 +15,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.GetComponent<EnemyMovement>())
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<Health>().Damage(_bulletDamage);
             Destroy(gameObject);
         }
     }

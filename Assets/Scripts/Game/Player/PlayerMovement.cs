@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
     [SerializeField] private float _movementSpeed;
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
         _velocity = Vector2.Lerp(_velocity, _movementInput * _movementSpeed, _acceleration);
         ClampMovementToScreenSize();
         _rigidbody.velocity = _velocity;
+        SetAnimation();
     }
     private void OnMove(InputValue inputValue)
     {
@@ -49,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
                 _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
             transform.position = new Vector2(transform.position.x, Constants.TOPBORDER);
         }
+    }
+    private void SetAnimation()
+    {
+        _animator.SetBool("IsMoving", _movementInput.magnitude > 0);
     }
     private void FlipScaleToXInput(float xInput)
     {

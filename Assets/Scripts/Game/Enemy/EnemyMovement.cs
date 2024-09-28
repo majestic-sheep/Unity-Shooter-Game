@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private EnemyAwareness _enemyAwareness;
     [SerializeField] private Vector2 _targetDirection;
@@ -19,6 +21,7 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         NewWanderTargetPoint();
+        _animator = GetComponent<Animator>();
     }
     void FixedUpdate()
     {
@@ -59,6 +62,7 @@ public class EnemyMovement : MonoBehaviour
     }
     private void UpdateGraphics()
     {
+        _animator.SetBool("IsMoving", _targetDirection.magnitude > 0);
         if (_targetDirection == Vector2.zero) return;
         if (_targetDirection.x > 0)
             transform.localScale = new Vector3(1, 1, 1);

@@ -47,6 +47,9 @@ TagManager:
   - name: Prop
     uniqueID: 2934464563
     locked: 0
+  - name: Corpse
+    uniqueID: 2878110987
+    locked: 0
   - name: Collectable
     uniqueID: 2960221927
     locked: 0
