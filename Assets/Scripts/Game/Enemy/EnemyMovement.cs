@@ -65,8 +65,14 @@ public class EnemyMovement : MonoBehaviour
         _animator.SetBool("IsMoving", _targetDirection.magnitude > 0);
         if (_targetDirection == Vector2.zero) return;
         if (_targetDirection.x > 0)
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(
+                Mathf.Abs(transform.localScale.x),
+                transform.localScale.y,
+                transform.localScale.z);
         else
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(
+                -Mathf.Abs(transform.localScale.x),
+                transform.localScale.y,
+                transform.localScale.z);
     }
 }

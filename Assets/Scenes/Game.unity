@@ -457,7 +457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c93e74c339750384aaafb3b58ec23099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _greenEnemyPrefab: {fileID: 8451858921245095786, guid: 742ede54a022ebd42aefbd48943f4504, type: 3}
+  _enemy1Prefab: {fileID: 4907333170071107049, guid: 65355ad546b491f478c669a7503a87af, type: 3}
+  _enemy2Prefab: {fileID: 3715662865039763127, guid: d867c2d9f78262d48a0d7640209a0ae9, type: 3}
+  _enemy3Prefab: {fileID: 8423829126382888793, guid: 7ac2bdda58965bb419053295c49a7955, type: 3}
+  _enemy4Prefab: {fileID: 345863184071228464, guid: 81b4dea94d449c7418dfa92562c97342, type: 3}
   _spawnDelay: 1.7
 --- !u!4 &539775487
 Transform:
@@ -1514,6 +1517,7 @@ MonoBehaviour:
   _maximumHealth: 100
   _currentHealth: 100
   _destroyOnDeath: 0
+  _destroyDelay: 0
   OnDied:
     m_PersistentCalls:
       m_Calls:

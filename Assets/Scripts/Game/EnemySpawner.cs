@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class EnemySpawningManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _greenEnemyPrefab;
+
+    [SerializeField] private GameObject _enemy1Prefab;
+    [SerializeField] private GameObject _enemy2Prefab;
+    [SerializeField] private GameObject _enemy3Prefab;
+    [SerializeField] private GameObject _enemy4Prefab;
     [SerializeField] private float _spawnDelay;
     private float _lastSpawnTime;
 
-    private const float SPAWNMARGIN = 5f;
+    private const float SPAWNMARGIN = 15f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -48,7 +52,16 @@ public class EnemySpawningManager : MonoBehaviour
                     Random.Range(Constants.LEFTBORDER, Constants.RIGHTBORDER),
                     Constants.TOPBORDER + SPAWNMARGIN);
         }
-        Instantiate(_greenEnemyPrefab, position, Quaternion.identity);
+        GameObject enemy = ChooseEnemy();
+        Instantiate(enemy, position, Quaternion.identity);
         _lastSpawnTime = Time.time;
+    }
+    private GameObject ChooseEnemy()
+    {
+        float random = Random.value;
+        if (random < 0.4) return _enemy3Prefab;
+        if (random < 0.7) return _enemy2Prefab;
+        if (random < 0.9) return _enemy1Prefab;
+        return _enemy4Prefab;
     }
 }
