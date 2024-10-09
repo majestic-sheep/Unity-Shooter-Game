@@ -108,6 +108,26 @@ PrefabInstance:
       propertyPath: _killScore
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _dropChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _rifleWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _pistolWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _shotgunWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _modifierChance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _destroyDelay
       value: 1.67
@@ -124,6 +144,14 @@ PrefabInstance:
       propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
       objectReference: {fileID: 6877599907377627976}
+    - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DropCollectable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
     - target: {fileID: 7175661335821184716, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: m_Size.x
       value: 4.6687403

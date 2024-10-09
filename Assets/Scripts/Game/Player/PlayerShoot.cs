@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,21 +9,19 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _heldGun;
     [SerializeField] private Transform _muzzleTransform;
-    [SerializeField] private float _bulletSpeed;
-    [SerializeField] private float _fireDelay;
+    [SerializeField] private Inventory _inventory;
+
     private bool _firing;
-    private float _lastFireTime;
-    private void Awake()
-    {
-        // _lastFireTime should be set to be ready to fire upon awakening
-        _lastFireTime = Time.time - _fireDelay;
-    }
+    private float _lastFireTime = -1000f;
     void Update()
     {
-        if (_firing && Time.time - _lastFireTime >= _fireDelay)
+        if (_firing && Time.time - _lastFireTime >= _inventory.CurrentWeapon.FireDelay)
         {
-            FireBullet();
+            for (int i = 0; i < _inventory.CurrentWeapon.BulletCount; i++)
+                FireBullet();
             _lastFireTime = Time.time;
+
+            _inventory.UseAmmo();
         }
     }
     private void OnFire(InputValue inputValue)
@@ -43,6 +42,15 @@ public class PlayerShoot : MonoBehaviour
 
         GameObject bullet = Instantiate(_bulletPrefab, _muzzleTransform.position, Quaternion.identity);
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
-        rigidbody.velocity = _bulletSpeed * angleToFireIn;
+        rigidbody.velocity = _inventory.CurrentWeapon.BulletSpeed * angleToFireIn;
+        rigidbody.velocity += new Vector2(
+            Random.Range(
+                -_inventory.CurrentWeapon.BulletVelocityMargin, 
+                _inventory.CurrentWeapon.BulletVelocityMargin),
+            Random.Range(
+                -_inventory.CurrentWeapon.BulletVelocityMargin, 
+                _inventory.CurrentWeapon.BulletVelocityMargin));
+
+        bullet.ConvertTo<Bullet>().Damage = _inventory.CurrentWeapon.BulletDamage;
     }
 }

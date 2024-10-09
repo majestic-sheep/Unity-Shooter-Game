@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float _maximumHealth;
     [SerializeField] private float _currentHealth;
     [SerializeField] private bool _destroyOnDeath;
-    [SerializeField] private float _destroyDelay;
+    public float _destroyDelay;
     public float PercentHealth
     {
         get

@@ -68,6 +68,30 @@ PrefabInstance:
       propertyPath: _killScore
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _heavyWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _rifleWeight
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _splitWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _pistolWeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _shotgunWeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _modifierChance
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _currentHealth
       value: 10
@@ -80,6 +104,10 @@ PrefabInstance:
       propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
       objectReference: {fileID: 4526111482166779531}
+    - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
     - target: {fileID: 7584680041567418896, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: m_Sprite
       value: 
