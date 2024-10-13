@@ -211,6 +211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Fade Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6381699864923937632, guid: 2801caf68e4b4b24d9a688d32b1155bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7937642595020993447, guid: 2801caf68e4b4b24d9a688d32b1155bc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
