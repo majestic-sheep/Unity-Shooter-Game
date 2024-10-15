@@ -52,7 +52,6 @@ public class Weapon : MonoScript
             BulletSpeed = 30;
             FireDelay = 1;
             Ammo = 30;
-            InfiAmmo = true;
             WeaponSprite = _inventory.PistolSprite;
             WeaponColor = Color.white;
             return true;
@@ -65,7 +64,6 @@ public class Weapon : MonoScript
             BulletSpeed = 50;
             FireDelay = 0.3125f;
             Ammo = 60;
-            InfiAmmo = false;
             WeaponSprite = _inventory.RifleSprite;
             WeaponColor = Color.white;
             return true;
@@ -74,11 +72,10 @@ public class Weapon : MonoScript
         {
             BulletCount = 5;
             BulletVelocityMargin = 7;
-            BulletDamage = 1.76f;
+            BulletDamage = 2f;
             BulletSpeed = 25;
             FireDelay = 1.3f;
             Ammo = 15;
-            InfiAmmo = false;
             WeaponSprite = _inventory.ShotgunSprite;
             WeaponColor = Color.white;
             return true;
@@ -91,8 +88,6 @@ public class Weapon : MonoScript
         {
             FireDelay /= 2;
             BulletVelocityMargin += 1;
-            Ammo = Ammo * 5 / 6;
-            InfiAmmo = false;
             WeaponColor = Color.blue;
             return true;
         }
@@ -103,17 +98,22 @@ public class Weapon : MonoScript
             BulletCount *= 2;
             if (BulletVelocityMargin == 0) BulletVelocityMargin = 5;
             Ammo = 25;
-            InfiAmmo = false;
             WeaponColor = Color.green;
             return true;
         }
         else if (modifier.Equals("heavy"))
         {
             FireDelay *= 1.1f;
-            BulletDamage *= 2;
-            Ammo = 10;
-            InfiAmmo = false;
+            BulletDamage *= 2.2f;
+            Ammo /= 2;
             WeaponColor = Color.red;
+            return true;
+        }
+        else if (modifier.Equals("infiAmmo"))
+        {
+            BulletDamage *= 0.8f;
+            InfiAmmo = true;
+            WeaponColor = Color.gray;
             return true;
         }
         return false;

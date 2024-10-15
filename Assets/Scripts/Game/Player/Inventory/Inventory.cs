@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
     }
     private void Start()
     {
-        Weapons.Add(new Weapon("pistol"));
+        Weapons.Add(new Weapon("pistol", "infiAmmo"));
         CurrentWeaponIndex = 0;
     }
     public void Update()
