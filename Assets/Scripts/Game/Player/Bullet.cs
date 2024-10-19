@@ -6,10 +6,14 @@ public class Bullet : MonoBehaviour
 {
     private Camera _camera;
     private readonly float _offScreenAllowableMargin = 20f;
+    [SerializeField] private float _mOfDamageToLocalScale;
+    [SerializeField] private float _bOfDamageToLocalScale;
     public float Damage { private get; set; }
-    private void Awake()
+    private void Start()
     {
         _camera = Camera.main;
+        transform.localScale *= _mOfDamageToLocalScale * Damage + _bOfDamageToLocalScale;
+        _camera.GetComponent<CameraShake>().ShakeMagnitude += Damage / 10;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
