@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 8404569207697223524}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5639793337793219824
 MonoBehaviour:
@@ -51,6 +51,10 @@ MonoBehaviour:
   _wobbleYAmplitude: 1
   _wobbleRotAmplitude: 10
   _wobbleWavelength: 0.6
+  _fadeAfter: 26
+  _deleteAfter: 30
+  _fadeAmplitude: 0.3
+  _fadeWavelength: 0.1
 --- !u!58 &3234519808359523096
 CircleCollider2D:
   m_ObjectHideFlags: 0

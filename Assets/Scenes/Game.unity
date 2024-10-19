@@ -1781,6 +1781,7 @@ MonoBehaviour:
   _playerShoot: {fileID: 1972815770}
   _gunSpriteRenderer: {fileID: 1246953743}
   Weapons: []
+  WeaponMaxCount: 9
 --- !u!1 &1995153980
 GameObject:
   m_ObjectHideFlags: 0

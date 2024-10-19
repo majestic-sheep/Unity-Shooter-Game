@@ -5,12 +5,14 @@ using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour
 {
+
     public Sprite PistolSprite;
     public Sprite RifleSprite;
     public Sprite ShotgunSprite;
     [SerializeField] private PlayerShoot _playerShoot;
     [SerializeField] private SpriteRenderer _gunSpriteRenderer;
     public List<Weapon> Weapons = new();
+    public int WeaponMaxCount = 9;
     public int CurrentWeaponIndex { get; private set; } = 0;
     public Weapon CurrentWeapon {
         get
