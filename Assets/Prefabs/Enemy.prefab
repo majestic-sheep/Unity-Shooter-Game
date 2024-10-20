@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAwarenessDistance: 15
+  _stopChasingDistance: 0.5
 --- !u!114 &1208905043679475325
 MonoBehaviour:
   m_ObjectHideFlags: 0

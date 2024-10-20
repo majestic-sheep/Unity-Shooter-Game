@@ -8,6 +8,7 @@ public class EnemyAwareness : MonoBehaviour
     public bool AwareOfPlayer { get; private set; }
     public Vector2 DirectionToPlayer {  get; private set; }
     [SerializeField] private float _playerAwarenessDistance;
+    [SerializeField] private float _stopChasingDistance;
     private Transform _playerTransform;
     private void Awake()
     {
@@ -17,7 +18,8 @@ public class EnemyAwareness : MonoBehaviour
     void Update()
     {
         Vector2 enemyToPlayerVector = _playerTransform.position - transform.position;
-        DirectionToPlayer = enemyToPlayerVector.normalized;
+        if (enemyToPlayerVector.magnitude <= _stopChasingDistance) DirectionToPlayer = Vector2.zero;
+        else DirectionToPlayer = enemyToPlayerVector.normalized;
         AwareOfPlayer = enemyToPlayerVector.magnitude <= _playerAwarenessDistance;
     }
 }
