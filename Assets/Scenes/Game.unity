@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77baa0be70691c4a8bdbaa6a0eff517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToWaitBeforeExit: 1.5
+  _timeToWaitBeforeExit: 3
   _sceneFade: {fileID: 320617933}
 --- !u!114 &539775491
 MonoBehaviour:
