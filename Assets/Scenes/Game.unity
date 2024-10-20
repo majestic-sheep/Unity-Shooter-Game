@@ -765,6 +765,8 @@ MonoBehaviour:
   _enemy4Prefab: {fileID: 345863184071228464, guid: 81b4dea94d449c7418dfa92562c97342, type: 3}
   _enemySpawningManager: {fileID: 539775486}
   Level: 1
+  _playerHealth: {fileID: 1972815768}
+  _levelHealingRatio: 0.5
   OnLevelChanged:
     m_PersistentCalls:
       m_Calls:

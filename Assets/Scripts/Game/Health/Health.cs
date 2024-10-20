@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float _currentHealth;
     [SerializeField] private bool _destroyOnDeath;
     public float _destroyDelay;
+    private bool _markedDead;
     public float PercentHealth
     {
         get
@@ -22,8 +23,9 @@ public class Health : MonoBehaviour
     {
         _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maximumHealth);
         OnHealthChanged.Invoke();
-        if (_currentHealth == 0)
+        if (_currentHealth == 0 && !_markedDead)
         {
+            _markedDead = true;
             OnDied.Invoke();
             if (_destroyOnDeath)
             {
