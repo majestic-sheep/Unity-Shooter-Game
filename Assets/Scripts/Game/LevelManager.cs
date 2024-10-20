@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
     private int _enemy2Remaining;
     private int _enemy3Remaining;
     private int _enemy4Remaining;
+    [SerializeField] private Health _playerHealth;
+    [SerializeField] private float _levelHealingRatio;
     public UnityEvent OnLevelChanged;
     private int _totalRemaining
     {
@@ -57,6 +59,14 @@ public class LevelManager : MonoBehaviour
     }
     private void NextLevel()
     {
+        SetNewEnemyCounts();
+        SetRemainingToCount();
+        _enemySpawningManager.SpawnDelay = _enemySpawnDelay;
+        _playerHealth.HealRatio(_levelHealingRatio);
+        OnLevelChanged.Invoke();
+    }
+    private void SetNewEnemyCounts()
+    {
         Level++;
         _enemy2Count++;
         _enemy3Count++;
@@ -71,9 +81,6 @@ public class LevelManager : MonoBehaviour
             _enemy4Count = Random.Range((Level - 7) / 2, Level / 2);
             _enemy4Count = Mathf.Max(0, _enemy4Count);
         }
-        SetRemainingToCount();
-        _enemySpawningManager.SpawnDelay = _enemySpawnDelay;
-        OnLevelChanged.Invoke();
     }
     private void SetRemainingToCount()
     {
