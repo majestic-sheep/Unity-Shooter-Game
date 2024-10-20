@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 public class LevelManager : MonoBehaviour
@@ -60,10 +61,15 @@ public class LevelManager : MonoBehaviour
         _enemy2Count++;
         _enemy3Count++;
         _enemySpawnDelay *= 0.9f;
-        if (Level >= 6)
+        if (Level >= 3)
         {
-            if (Random.value < 0.5f) _enemy1Count = Random.Range(Level - 6, Level);
-            else _enemy2Count = Random.Range((Level - 6) / 2, Level / 2);
+            _enemy1Count = Random.Range(Level - 5, Level);
+            _enemy1Count = Mathf.Max(0, _enemy1Count);
+        }
+        if (Level >= 5)
+        {
+            _enemy4Count = Random.Range((Level - 7) / 2, Level / 2);
+            _enemy4Count = Mathf.Max(0, _enemy4Count);
         }
         SetRemainingToCount();
         _enemySpawningManager.SpawnDelay = _enemySpawnDelay;
