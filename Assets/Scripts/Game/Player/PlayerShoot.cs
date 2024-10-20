@@ -30,10 +30,6 @@ public class PlayerShoot : MonoBehaviour
     }
     private void FireBullet()
     {
-        /* 
-         * This function has a bug. If the player fires during the frame of an x-axis scale flip, it will fire as 
-         * though the gun were on the opposite side.
-         */
         Vector3 angleToFireIn;
         if (_heldGun.transform.lossyScale.x > 0)
             angleToFireIn = _heldGun.transform.right;

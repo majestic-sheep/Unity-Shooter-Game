@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Weapon : MonoScript
+public class Weapon : ScriptableObject
 {
     private Inventory _inventory;
 
