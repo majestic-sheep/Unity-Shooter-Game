@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour
 {
+    [SerializeField] private GameObject _collectablePrefab;
 
     public Sprite PistolSprite;
     public Sprite RifleSprite;
@@ -36,22 +37,47 @@ public class Inventory : MonoBehaviour
     {
         Weapons.Add(weapon);
     }
+    private void RemoveCurrentWeapon()
+    {
+        Weapons.RemoveAt(CurrentWeaponIndex);
+        if (Weapons.Count == CurrentWeaponIndex) { 
+            ShiftCurrentWeaponIndexBy(-1);
+        }
+        else
+        {
+            UpdateDisplayedWeapon();
+        }
+    }
+
     public void UseAmmo()
     {
         if (CurrentWeapon.InfiAmmo) return;
         CurrentWeapon.Ammo -= 1;
-        if (CurrentWeapon.Ammo <= 0)
-        {
-            Weapons.RemoveAt(CurrentWeaponIndex);
-            ShiftCurrentWeaponIndexBy(-1);
-        }
+        if (CurrentWeapon.Ammo <= 0) RemoveCurrentWeapon();
     }
     public void ShiftCurrentWeaponIndexBy(int value)
     {
         CurrentWeaponIndex += value;
         CurrentWeaponIndex = Mathf.Clamp(CurrentWeaponIndex, 0, Weapons.Count - 1);
 
+        UpdateDisplayedWeapon();
+    }
+    public void UpdateDisplayedWeapon()
+    {
         _gunSpriteRenderer.sprite = CurrentWeapon.WeaponSprite;
         _gunSpriteRenderer.color = CurrentWeapon.WeaponColor;
+    }
+    private void OnDrop(InputValue inputValue)
+    {
+        if (CurrentWeapon.Modifier == "infiAmmo") return;
+
+        GameObject _collectable = Instantiate(_collectablePrefab, transform.position, Quaternion.identity);
+        Transform gunTransform = _gunSpriteRenderer.GetComponentInParent<Transform>();
+        _collectable.transform.position = new Vector2(
+            _collectable.transform.position.x + gunTransform.lossyScale.x * 10f,
+            gunTransform.position.y - 3f);
+        _collectable.GetComponent<CollectableWeapon>().SetWeapon(CurrentWeapon);
+
+        RemoveCurrentWeapon();
     }
 }

@@ -33,12 +33,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Scrap",
+                    "name": "Drop",
                     "type": "Button",
                     "id": "7f4da04c-bd48-4303-931e-64a88a9c1a19",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],
@@ -281,18 +281,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Scrap",
+                    "action": "Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "3e07c6cd-213b-43cb-a5e2-4d83a78260fc",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Scrap",
+                    "action": "Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
