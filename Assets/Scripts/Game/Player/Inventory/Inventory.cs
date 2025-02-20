@@ -10,21 +10,21 @@ public class Inventory : MonoBehaviour
     public Sprite PistolSprite;
     public Sprite RifleSprite;
     public Sprite ShotgunSprite;
-    [SerializeField] private PlayerShoot _playerShoot;
-    [SerializeField] private SpriteRenderer _gunSpriteRenderer;
-    public List<Weapon> Weapons = new();
-    public int WeaponMaxCount = 9;
-    public int CurrentWeaponIndex { get; private set; } = 0;
-    public Weapon CurrentWeapon {
+    [SerializeField] private PlayerUseItem _playerShoot;
+    [SerializeField] private SpriteRenderer _itemSpriteRenderer;
+    public List<Item> Items = new();
+    public int MaxInventorySize = 9;
+    public int CurrentIndex { get; private set; } = 0;
+    public Item CurrentItem {
         get
         {
-            return Weapons[CurrentWeaponIndex];
+            return Items[CurrentIndex];
         }
     }
     private void Start()
     {
-        Weapons.Add(new Weapon("pistol", "infiAmmo"));
-        CurrentWeaponIndex = 0;
+        Items.Add(new Weapon("pistol", "infiAmmo"));
+        CurrentIndex = 0;
     }
     public void Update()
     {
@@ -33,14 +33,14 @@ public class Inventory : MonoBehaviour
 
         ShiftCurrentWeaponIndexBy(-value);
     }
-    public void Add(Weapon weapon)
+    public void Add(Item item)
     {
-        Weapons.Add(weapon);
+        Items.Add(item);
     }
-    private void RemoveCurrentWeapon()
+    public void RemoveCurrentItem()
     {
-        Weapons.RemoveAt(CurrentWeaponIndex);
-        if (Weapons.Count == CurrentWeaponIndex) { 
+        Items.RemoveAt(CurrentIndex);
+        if (Items.Count == CurrentIndex) { 
             ShiftCurrentWeaponIndexBy(-1);
         }
         else
@@ -51,33 +51,38 @@ public class Inventory : MonoBehaviour
 
     public void UseAmmo()
     {
-        if (CurrentWeapon.InfiAmmo) return;
-        CurrentWeapon.Ammo -= 1;
-        if (CurrentWeapon.Ammo <= 0) RemoveCurrentWeapon();
+        Weapon current_weapon = (Weapon)CurrentItem;
+        if (current_weapon.InfiAmmo) return;
+        current_weapon.Ammo -= 1;
+        if (current_weapon.Ammo <= 0) RemoveCurrentItem();
     }
     public void ShiftCurrentWeaponIndexBy(int value)
     {
-        CurrentWeaponIndex += value;
-        CurrentWeaponIndex = Mathf.Clamp(CurrentWeaponIndex, 0, Weapons.Count - 1);
+        CurrentIndex += value;
+        CurrentIndex = Mathf.Clamp(CurrentIndex, 0, Items.Count - 1);
 
         UpdateDisplayedWeapon();
     }
     public void UpdateDisplayedWeapon()
     {
-        _gunSpriteRenderer.sprite = CurrentWeapon.WeaponSprite;
-        _gunSpriteRenderer.color = CurrentWeapon.WeaponColor;
+        _itemSpriteRenderer.sprite = CurrentItem.ItemSprite;
+        _itemSpriteRenderer.color = CurrentItem.ItemColor;
     }
     private void OnDrop(InputValue inputValue)
     {
-        if (CurrentWeapon.Modifier == "infiAmmo") return;
+        if (CurrentItem is Weapon)
+        {
+            Weapon current_weapon = (Weapon)CurrentItem;
+            if (current_weapon.Modifier == "infiAmmo") return;
+        }
 
         GameObject _collectable = Instantiate(_collectablePrefab, transform.position, Quaternion.identity);
-        Transform gunTransform = _gunSpriteRenderer.GetComponentInParent<Transform>();
+        Transform gunTransform = _itemSpriteRenderer.GetComponentInParent<Transform>();
         _collectable.transform.position = new Vector2(
             _collectable.transform.position.x + gunTransform.lossyScale.x * 10f,
             gunTransform.position.y - 3f);
-        _collectable.GetComponent<CollectableWeapon>().SetWeapon(CurrentWeapon);
+        _collectable.GetComponent<CollectableBehavior>().SetItem(CurrentItem);
 
-        RemoveCurrentWeapon();
+        RemoveCurrentItem();
     }
 }

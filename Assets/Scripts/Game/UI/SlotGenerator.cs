@@ -25,14 +25,14 @@ public class SlotGenerator : MonoBehaviour
     }
     private bool SlotsCorrect()
     {
-        for (int i = 0; i < Mathf.Max(_inventory.Weapons.Count, _slots.Count); i++)
+        for (int i = 0; i < Mathf.Max(_inventory.Items.Count, _slots.Count); i++)
         {
             if (i >= _slots.Count) return false;
-            Weapon slotWeapon = _slots[i].GetComponent<SlotUI>().Weapon;
-            if (i >= _inventory.Weapons.Count) return false;
-            Weapon inventoryWeapon = _inventory.Weapons[i];
+            Item slotItem = _slots[i].GetComponent<SlotUI>().Item;
+            if (i >= _inventory.Items.Count) return false;
+            Item inventoryItem = _inventory.Items[i];
 
-            if (!slotWeapon.Equals(inventoryWeapon)) return false;
+            if (!slotItem.Equals(inventoryItem)) return false;
         }
         return true;
     }
@@ -47,24 +47,24 @@ public class SlotGenerator : MonoBehaviour
     }
     private void CreateAllSlots()
     {
-        for (int i = 0; i < _inventory.Weapons.Count; i++)
+        for (int i = 0; i < _inventory.Items.Count; i++)
         {
-            Vector2 pos = new Vector2(_slotSpacing * i - 0.5f * _slotSpacing * (_inventory.Weapons.Count-1), _rootY);
-            CreateSlot(_inventory.Weapons[i], pos);
+            Vector2 pos = new Vector2(_slotSpacing * i - 0.5f * _slotSpacing * (_inventory.Items.Count-1), _rootY);
+            CreateSlot(_inventory.Items[i], pos);
         }
     }
-    private void CreateSlot(Weapon weapon, Vector2 position)
+    private void CreateSlot(Item item, Vector2 position)
     {
         GameObject slot = Instantiate(_slotPrefab, transform);
         slot.transform.localPosition = position;
-        slot.GetComponent<SlotUI>().SetWeapon(weapon.Clone());
+        slot.GetComponent<SlotUI>().SetItem(item.Clone());
         _slots.Add(slot);
     }
     private void InformActiveSlot()
     {
         for (int i = 0; i < _slots.Count; i++)
         {
-            bool active = i == _inventory.CurrentWeaponIndex;
+            bool active = i == _inventory.CurrentIndex;
             _slots[i].GetComponent<SlotUI>().Active = active;
         }
     }

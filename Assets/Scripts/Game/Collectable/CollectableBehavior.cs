@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableWeapon : MonoBehaviour
+public class CollectableBehavior : MonoBehaviour
 {
     [SerializeField] private Inventory _inventory;
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -16,7 +16,7 @@ public class CollectableWeapon : MonoBehaviour
     [SerializeField] private float _fadeAmplitude;
     [SerializeField] private float _fadeWavelength;
 
-    private Weapon _weapon;
+    private Item _item;
     void Start()
     {
         _inventory = FindAnyObjectByType<Inventory>();
@@ -43,28 +43,26 @@ public class CollectableWeapon : MonoBehaviour
         float wave = 1 - ((Mathf.Cos(fadeTime / _fadeWavelength) + 1) / 2);
 
         _spriteRenderer.color = Color.Lerp(
-            _weapon.WeaponColor,
+            _item.ItemColor,
             Color.clear,
             wave * _fadeAmplitude);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.GetComponent<PlayerMovement>()) return;
-        if (_inventory.Weapons.Count >= _inventory.WeaponMaxCount) return;
+        if (_inventory.Items.Count >= _inventory.MaxInventorySize) return;
         Collect();
     }
     public void Collect()
     {
-        if (_weapon == null)
-            _inventory.Add(new Weapon("shotgun"));
-        else
-            _inventory.Add(_weapon);
+        if (_item != null)
+            _inventory.Add(_item);
         Destroy(gameObject);
     }
-    public void SetWeapon(Weapon weapon)
+    public void SetItem(Item item)
     {
-        _weapon = weapon;
-        _spriteRenderer.sprite = weapon.WeaponSprite;
-        _spriteRenderer.color = weapon.WeaponColor;
+        _item = item;
+        _spriteRenderer.sprite = item.ItemSprite;
+        _spriteRenderer.color = item.ItemColor;
     }
 }

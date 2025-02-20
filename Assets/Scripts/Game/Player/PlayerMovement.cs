@@ -9,12 +9,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
-    [SerializeField] private float _movementSpeed;
+    public float MovementSpeed;
     [SerializeField] private float _acceleration;
     private Vector2 _velocity = Vector2.zero;
     private void FixedUpdate()
     {
-        _velocity = Vector2.Lerp(_velocity, _movementInput * _movementSpeed, _acceleration);
+        _velocity = Vector2.Lerp(_velocity, _movementInput * MovementSpeed, _acceleration);
         ClampMovementToScreenSize();
         _rigidbody.velocity = _velocity;
         SetAnimation();

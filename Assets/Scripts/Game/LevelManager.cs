@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         SetRemainingToCount();
-        _enemySpawningManager.SpawnDelay = _enemySpawnDelay;
+        _enemySpawningManager.LevelSpawnDelay = _enemySpawnDelay;
     }
     private void Update()
     {
@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour
     {
         SetNewEnemyCounts();
         SetRemainingToCount();
-        _enemySpawningManager.SpawnDelay = _enemySpawnDelay;
+        _enemySpawningManager.LevelSpawnDelay = _enemySpawnDelay;
         _playerHealth.HealRatio(_levelHealingRatio);
         OnLevelChanged.Invoke();
     }

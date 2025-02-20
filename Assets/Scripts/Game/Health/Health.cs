@@ -33,6 +33,11 @@ public class Health : MonoBehaviour
             }
         }
     }
+    public void Heal(float heal)
+    {
+        _currentHealth = Mathf.Clamp(_currentHealth + heal, 0, _maximumHealth);
+        OnHealthChanged.Invoke();
+    }
     public void HealRatio(float ratio)
     {
         _currentHealth = Mathf.Lerp(_currentHealth, _maximumHealth, ratio);

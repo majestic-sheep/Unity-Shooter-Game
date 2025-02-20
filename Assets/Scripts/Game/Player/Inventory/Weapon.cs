@@ -4,11 +4,11 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class Weapon : ScriptableObject
+public class Weapon : Item
 {
     private Inventory _inventory;
 
-    public string Type;
+    public string WeaponType;
     public string Modifier;
     public float BulletCount;
     public float BulletVelocityMargin;
@@ -17,28 +17,26 @@ public class Weapon : ScriptableObject
     public float FireDelay;
     public int Ammo;
     public bool InfiAmmo;
-    public Sprite WeaponSprite;
-    public Color WeaponColor;
     public Weapon()
     {
         _inventory = FindAnyObjectByType<Inventory>();
-        Type = null;
+        WeaponType = null;
         Modifier = null;
     }
     public Weapon(string type)
     {
         _inventory = FindAnyObjectByType<Inventory>();
 
-        if (SetTypeData(type)) Type = type;
-        else Type = null;
+        if (SetTypeData(type)) WeaponType = type;
+        else WeaponType = null;
         Modifier = null;
     }
     public Weapon(string type, string modifier)
     {
         _inventory = FindAnyObjectByType<Inventory>();
 
-        if (SetTypeData(type)) Type = type;
-        else Type = null;
+        if (SetTypeData(type)) WeaponType = type;
+        else WeaponType = null;
         if (SetModifierData(modifier)) Modifier = modifier;
         else Modifier = null;
     }
@@ -52,8 +50,8 @@ public class Weapon : ScriptableObject
             BulletSpeed = 30;
             FireDelay = 1;
             Ammo = 30;
-            WeaponSprite = _inventory.PistolSprite;
-            WeaponColor = Color.white;
+            ItemSprite = _inventory.PistolSprite;
+            ItemColor = Color.white;
             return true;
         }
         else if (type.Equals("rifle"))
@@ -64,8 +62,8 @@ public class Weapon : ScriptableObject
             BulletSpeed = 50;
             FireDelay = 0.3125f;
             Ammo = 60;
-            WeaponSprite = _inventory.RifleSprite;
-            WeaponColor = Color.white;
+            ItemSprite = _inventory.RifleSprite;
+            ItemColor = Color.white;
             return true;
         }
         else if (type.Equals("shotgun"))
@@ -76,8 +74,8 @@ public class Weapon : ScriptableObject
             BulletSpeed = 25;
             FireDelay = 1.3f;
             Ammo = 15;
-            WeaponSprite = _inventory.ShotgunSprite;
-            WeaponColor = Color.white;
+            ItemSprite = _inventory.ShotgunSprite;
+            ItemColor = Color.white;
             return true;
         }
         return false;
@@ -88,7 +86,7 @@ public class Weapon : ScriptableObject
         {
             FireDelay /= 2;
             BulletVelocityMargin += 1;
-            WeaponColor = Color.blue;
+            ItemColor = Color.blue;
             return true;
         }
         else if (modifier.Equals("split"))
@@ -98,7 +96,7 @@ public class Weapon : ScriptableObject
             BulletCount *= 2;
             if (BulletVelocityMargin == 0) BulletVelocityMargin = 5;
             Ammo = 25;
-            WeaponColor = Color.green;
+            ItemColor = Color.green;
             return true;
         }
         else if (modifier.Equals("heavy"))
@@ -106,22 +104,26 @@ public class Weapon : ScriptableObject
             FireDelay *= 1.1f;
             BulletDamage *= 2.2f;
             Ammo /= 2;
-            WeaponColor = Color.red;
+            ItemColor = Color.red;
             return true;
         }
         else if (modifier.Equals("infiAmmo"))
         {
             BulletDamage *= 0.8f;
             InfiAmmo = true;
-            WeaponColor = Color.gray;
+            ItemColor = Color.gray;
             return true;
         }
         return false;
     }
-    public bool Equals(Weapon weapon)
+    public override bool Equals(Item other)
     {
-        if (weapon == null) return false;
-        if (Type != weapon.Type) return false;
+        if (!base.Equals(other)) return false;
+
+        if (other is not Weapon) return false;
+        Weapon weapon = (Weapon)other;
+
+        if (WeaponType != weapon.WeaponType) return false;
         if (Modifier != weapon.Modifier) return false;
         if (BulletCount != weapon.BulletCount) return false;
         if (BulletVelocityMargin != weapon.BulletVelocityMargin) return false;
@@ -130,14 +132,12 @@ public class Weapon : ScriptableObject
         if (FireDelay != weapon.FireDelay) return false;
         if (Ammo != weapon.Ammo) return false;
         if (InfiAmmo != weapon.InfiAmmo) return false;
-        if (WeaponSprite != weapon.WeaponSprite) return false;
-        if (WeaponColor != weapon.WeaponColor) return false;
         return true;
     }
-    public Weapon Clone()
+    public override Item Clone()
     {
-        Weapon weapon = new();
-        weapon.Type = Type;
+        Weapon weapon = new Weapon();
+        weapon.WeaponType = WeaponType;
         weapon.Modifier = Modifier;
         weapon.BulletCount = BulletCount;
         weapon.BulletVelocityMargin = BulletVelocityMargin;
@@ -146,8 +146,8 @@ public class Weapon : ScriptableObject
         weapon.FireDelay = FireDelay;
         weapon.Ammo = Ammo;
         weapon.InfiAmmo = InfiAmmo;
-        weapon.WeaponSprite = WeaponSprite;
-        weapon.WeaponColor = WeaponColor;
+        weapon.ItemSprite = ItemSprite;
+        weapon.ItemColor = ItemColor;
         return weapon;
     }
 }

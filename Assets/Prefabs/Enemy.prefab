@@ -588,7 +588,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collectablePrefab: {fileID: 1735077963604373599, guid: d4953b4ad6da0184fa50fc5b3b4990a0, type: 3}
+  _lootTableManager: {fileID: 0}
   _dropChance: 0.5
+  _potionWeight: 1
+  _healthWeight: 1
+  _hasteWeight: 1
+  _powerWeight: 1
+  _luckWeight: 1
+  _stenchWeight: 1
+  _poisonWeight: 1
+  _slowWeight: 1
+  _weaponWeight: 3
   _pistolWeight: 6
   _rifleWeight: 5
   _shotgunWeight: 4

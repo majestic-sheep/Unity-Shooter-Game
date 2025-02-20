@@ -7,7 +7,8 @@ public class EnemySpawningManager : MonoBehaviour
 {
 
     [SerializeField] private LevelManager _levelManager;
-    public float SpawnDelay;
+    public float LevelSpawnDelay;
+    public float SpawnDelayMultModifier;
     private float _lastSpawnTime;
 
     private const float SPAWNMARGIN = 15f;
@@ -15,11 +16,12 @@ public class EnemySpawningManager : MonoBehaviour
     public UnityEvent OnEnemySpawned;
     void Awake()
     {
-        _lastSpawnTime = Time.time - SpawnDelay;
+        _lastSpawnTime = Time.time - LevelSpawnDelay;
+        SpawnDelayMultModifier = 1;
     }
     void Update()
     {
-        if (Time.time >= _lastSpawnTime + SpawnDelay)
+        if (Time.time >= _lastSpawnTime + LevelSpawnDelay * SpawnDelayMultModifier)
         {
             Spawn();
         }

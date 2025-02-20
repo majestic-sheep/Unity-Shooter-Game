@@ -643,6 +643,9 @@ GameObject:
   - component: {fileID: 539775489}
   - component: {fileID: 539775490}
   - component: {fileID: 539775491}
+  - component: {fileID: 539775492}
+  - component: {fileID: 539775493}
+  - component: {fileID: 539775494}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -663,7 +666,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelManager: {fileID: 539775491}
-  SpawnDelay: 0
+  LevelSpawnDelay: 0
+  SpawnDelayMultModifier: 0
   OnEnemySpawned:
     m_PersistentCalls:
       m_Calls:
@@ -782,6 +786,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &539775492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539775485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0472b091281fd2449ca50ca318c4fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PotionSprite: {fileID: 21300000, guid: 51a2785846c0ee340b95266c7e436769, type: 3}
+  _effectDisplayManager: {fileID: 1722587509}
+  _playerHealth: {fileID: 1972815768}
+--- !u!114 &539775493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539775485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d3fa89e14332a44b7e5c9d42a75a47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectDisplayX: -800
+  _effectDisplayY0: 337.1
+  _effectDisplayYIncrement: -20
+  _effectDisplayPrefab: {fileID: 6985103388570894232, guid: 6ff00d0ef1f638f43aa1440f516213c9, type: 3}
+--- !u!114 &539775494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539775485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dae531353dfda74c819cc374ed26a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DropChanceModifier: 0
+  ModifierChanceModifier: 0
 --- !u!1 &1182327497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1302,7 @@ GameObject:
   - component: {fileID: 1722587505}
   - component: {fileID: 1722587504}
   - component: {fileID: 1722587508}
+  - component: {fileID: 1722587509}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1363,6 +1413,22 @@ MonoBehaviour:
   _inventory: {fileID: 1972815771}
   _rootY: -450
   _slotSpacing: 200
+--- !u!114 &1722587509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722587503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d3fa89e14332a44b7e5c9d42a75a47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectDisplayX: -800
+  _effectDisplayY0: 350
+  _effectDisplayYIncrement: -40
+  _effectDisplayPrefab: {fileID: 6985103388570894232, guid: 6ff00d0ef1f638f43aa1440f516213c9, type: 3}
 --- !u!1 &1972815760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 1972815769}
   _rigidbody: {fileID: 1972815762}
-  _movementSpeed: 12
+  MovementSpeed: 12
   _acceleration: 0.3
 --- !u!50 &1972815762
 Rigidbody2D:
@@ -1765,6 +1831,8 @@ MonoBehaviour:
   _heldGun: {fileID: 1505055217}
   _muzzleTransform: {fileID: 1488069324}
   _inventory: {fileID: 1972815771}
+  _potionManager: {fileID: 539775492}
+  DamageMultiplier: 1
 --- !u!114 &1972815771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1782,9 +1850,9 @@ MonoBehaviour:
   RifleSprite: {fileID: 21300000, guid: e303090f29a8e844984ba67513d48c93, type: 3}
   ShotgunSprite: {fileID: 21300000, guid: 5ad7d543e8ae2124c82d7c6ec374ec4b, type: 3}
   _playerShoot: {fileID: 1972815770}
-  _gunSpriteRenderer: {fileID: 1246953743}
-  Weapons: []
-  WeaponMaxCount: 9
+  _itemSpriteRenderer: {fileID: 1246953743}
+  Items: []
+  MaxInventorySize: 9
 --- !u!1 &1995153980
 GameObject:
   m_ObjectHideFlags: 0
