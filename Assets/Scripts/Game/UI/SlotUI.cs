@@ -7,17 +7,35 @@ using UnityEngine.UI;
 public class SlotUI : MonoBehaviour
 {
     [SerializeField] private Image _image;
+    [SerializeField] private Image _outlineImage;
+    private Color _outlineImageUnselectedColor;
     [SerializeField] private Transform _actualImageTransform;
     [SerializeField] private Transform _weaponImageTransform;
     [SerializeField] private Transform _standardImageTransform;
     [SerializeField] private TMP_Text _text;
     public Item Item;
-    public bool Active;
-    [SerializeField] private float _activeScale;
-    public void Update()
+    public bool Active
     {
-        if (Active) transform.localScale = Vector3.one * _activeScale;
-        else transform.localScale = Vector3.one;
+        set
+        {
+            if (value)
+            {
+                _outlineImage.color = Color.white;
+                _text.color = Color.white;
+                transform.localScale = Vector3.one * _activeScale;
+            }
+            else
+            {
+                _outlineImage.color = _outlineImageUnselectedColor;
+                _text.color = _outlineImageUnselectedColor;
+                transform.localScale = Vector3.one;
+            }
+        }
+    }
+    [SerializeField] private float _activeScale;
+    public void Awake()
+    {
+        _outlineImageUnselectedColor = _outlineImage.color;
     }
     public void SetItem(Item item)
     {
