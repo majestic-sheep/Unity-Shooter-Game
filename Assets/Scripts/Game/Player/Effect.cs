@@ -21,6 +21,10 @@ public class Effect : ScriptableObject
             if (seconds <= 0) EndEffect();
             return seconds;
         }
+        set
+        {
+            _duration = value + Time.time - _startTime;
+        }
     }
     public Effect(EffectDisplayManager displayManager, Health playerHealth, string effectType, Color color)
     {
@@ -47,6 +51,7 @@ public class Effect : ScriptableObject
         else if (EffectName == "Stench") StartStenchEffect();
         else if (EffectName == "Poison") StartPoisonEffect();
         else if (EffectName == "Slow") StartSlowEffect();
+        else if (EffectName == "Linger") StartLingerEffect();
         _displayManager.AddEffectToDisplay(this);
     }
     public void StartHealthEffect()
@@ -85,6 +90,15 @@ public class Effect : ScriptableObject
     {
         FindAnyObjectByType<PlayerMovement>().MovementSpeed *= 0.5f;
         _duration = 15;
+    }
+
+    public void StartLingerEffect()
+    {
+        foreach (Effect effect in _displayManager.Effects)
+        {
+            effect.RemainingSeconds *= 2;
+        }
+        _duration = 1;
     }
     public void EndEffect()
     {

@@ -598,6 +598,7 @@ MonoBehaviour:
   _stenchWeight: 1
   _poisonWeight: 1
   _slowWeight: 1
+  _lingerWeight: 1
   _weaponWeight: 3
   _pistolWeight: 6
   _rifleWeight: 5

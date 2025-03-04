@@ -9,7 +9,7 @@ public class EffectDisplayManager : MonoBehaviour
     [SerializeField] private float _effectDisplayYIncrement;
 
     [SerializeField] private GameObject _effectDisplayPrefab;
-    private List<Effect> _effects = new();
+    public List<Effect> Effects = new();
     private List<GameObject> _effectDisplays = new();
     public void DestroyDisplayedEffects()
     {
@@ -21,25 +21,25 @@ public class EffectDisplayManager : MonoBehaviour
     public void GenerateDisplayedEffects()
     {
         float y = _effectDisplayY0;
-        for (int i = 0; i < _effects.Count; i++)
+        for (int i = 0; i < Effects.Count; i++)
         {
             GameObject effectDisplay = Instantiate(_effectDisplayPrefab, transform);
             effectDisplay.transform.localPosition = new Vector2(_effectDisplayX, y);
             EffectDisplay script = effectDisplay.GetComponent<EffectDisplay>();
             script.DisplayManager = this;
-            script.SetEffect(_effects[i]);
+            script.SetEffect(Effects[i]);
             _effectDisplays.Add(effectDisplay);
             y += _effectDisplayYIncrement;
         }
     }
     public void AddEffectToDisplay(Effect effect)
     {
-        _effects.Add(effect);
+        Effects.Add(effect);
         ReloadDisplayedEffects();
     }
     public void RemoveEffect(Effect effect)
     {
-        _effects.Remove(effect);
+        Effects.Remove(effect);
         ReloadDisplayedEffects();
     }
     public void ReloadDisplayedEffects()

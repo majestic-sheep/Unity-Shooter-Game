@@ -14,7 +14,7 @@ public class PotionManager : MonoBehaviour
     [SerializeField] private Health _playerHealth;
     public void Start()
     {
-        _effect_names = new string[] { "Health", "Haste", "Power", "Luck", "Stench", "Poison", "Slow" };
+        _effect_names = new string[] { "Health", "Haste", "Power", "Luck", "Stench", "Poison", "Slow", "Linger" };
         ShuffleColors();
     }
     public void ShuffleColors()
@@ -25,9 +25,10 @@ public class PotionManager : MonoBehaviour
             new(0.988f, 0.466f, 0.012f),
             Color.yellow,
             Color.green,
+            Color.cyan,
             Color.blue,
             new(0.588f, 0.012f, 1f),
-            new(1f, 0.012f, 0.784f)
+            new(1f, 0.012f, 0.784f),
         };
         for (int i = 0; i < _colors.Length; i++)
         {

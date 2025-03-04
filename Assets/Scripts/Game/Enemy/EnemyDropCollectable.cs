@@ -15,6 +15,7 @@ public class EnemyDropCollectable : MonoBehaviour
     [SerializeField] private float _stenchWeight;
     [SerializeField] private float _poisonWeight;
     [SerializeField] private float _slowWeight;
+    [SerializeField] private float _lingerWeight;
     [SerializeField] private float _weaponWeight;
     [SerializeField] private float _pistolWeight;
     [SerializeField] private float _rifleWeight;
@@ -53,7 +54,8 @@ public class EnemyDropCollectable : MonoBehaviour
             _luckWeight +
             _stenchWeight +
             _poisonWeight +
-            _slowWeight);
+            _slowWeight +
+            _lingerWeight);
         if (rand <= _healthWeight) return "Health";
         else rand -= _healthWeight;
         if (rand <= _hasteWeight) return "Haste";
@@ -67,6 +69,8 @@ public class EnemyDropCollectable : MonoBehaviour
         if (rand <= _poisonWeight) return "Poison";
         else rand -= _poisonWeight;
         if (rand <= _slowWeight) return "Slow";
+        else rand -= _slowWeight;
+        if (rand <= _lingerWeight) return "Linger";
         return "Missing Type";
     }
     public void DropWeapon()
