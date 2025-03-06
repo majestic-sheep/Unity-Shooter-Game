@@ -22,6 +22,14 @@ public class LevelManager : MonoBehaviour
     private int _enemy4Remaining;
     [SerializeField] private Health _playerHealth;
     [SerializeField] private float _levelHealingRatio;
+    
+    private float _enemySpawnDelay = 1.5f;
+
+    public bool IsIntermission;
+    public float _intermissionStartTime;
+    [SerializeField] private float _intermissionTime;
+    [SerializeField] private float _levelsBeforeIntermission;
+
     public UnityEvent OnLevelChanged;
     private int _totalRemaining
     {
@@ -44,7 +52,22 @@ public class LevelManager : MonoBehaviour
             return (_totalCount - _totalRemaining) / (float)_totalCount;
         }
     }
-    private float _enemySpawnDelay = 1.5f;
+    public string DisplayedLevelName
+    {
+        get
+        {
+            if (IsIntermission) return "Intermission";
+            else return $"Level {Level}";
+        }
+    }
+    public float LevelProgress
+    {
+        get
+        {
+            if (IsIntermission) return 2 * (Time.time - _intermissionStartTime) / _intermissionTime;
+            else return RatioSpawned;
+        }
+    }
     private void Start()
     {
         SetRemainingToCount();
@@ -52,13 +75,42 @@ public class LevelManager : MonoBehaviour
     }
     private void Update()
     {
+        if (IsIntermission) IntermissionUpdate();
+        else LevelUpdate();
+    }
+    private void IntermissionUpdate()
+    {
+        if (Time.time > _intermissionStartTime + _intermissionTime)
+        {
+            EndIntermission();
+        }
+    }
+    private void LevelUpdate()
+    {
         if (_totalRemaining == 0 && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
-            NextLevel();
+            if (Level % _levelsBeforeIntermission == 0)
+                StartIntermission();
+            else
+                NextLevel();
         }
+    }
+    private void StartIntermission()
+    {
+        _intermissionStartTime = Time.time;
+        IsIntermission = true;
+        _enemySpawningManager.Spawning = false;
+        OnLevelChanged.Invoke();
+    }
+    private void EndIntermission()
+    {
+        IsIntermission = false;
+        _enemySpawningManager.Spawning = true;
+        NextLevel();
     }
     private void NextLevel()
     {
+        Level++;
         SetNewEnemyCounts();
         SetRemainingToCount();
         _enemySpawningManager.LevelSpawnDelay = _enemySpawnDelay;
@@ -67,7 +119,6 @@ public class LevelManager : MonoBehaviour
     }
     private void SetNewEnemyCounts()
     {
-        Level++;
         _enemy2Count++;
         _enemy3Count++;
         _enemySpawnDelay *= 0.9f;

@@ -6,8 +6,8 @@ using UnityEngine;
 public class LevelDisplayUI : MonoBehaviour
 {
     [SerializeField] private LevelManager _levelManager;
-    public void UpdateLevel()
+    public void UpdateLevelName()
     {
-        gameObject.GetComponent<TMP_Text>().text = $"Level: {_levelManager.Level}";
+        gameObject.GetComponent<TMP_Text>().text = _levelManager.DisplayedLevelName;
     }
 }

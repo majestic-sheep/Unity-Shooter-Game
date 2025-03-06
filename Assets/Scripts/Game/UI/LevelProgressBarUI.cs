@@ -11,6 +11,12 @@ public class LevelProgressBarUI : MonoBehaviour
     [SerializeField] private float _displayedProgress;
     private float _targetProgress;
     [SerializeField] private float _progressAcceleration;
+    public void Update()
+    {
+        if (_levelManager.IsIntermission) {
+            _displayedProgress = _levelManager.LevelProgress;
+        }
+    }
     public void FixedUpdate()
     {
         _displayedProgress = Mathf.Lerp(_displayedProgress, _targetProgress, _progressAcceleration);
@@ -18,6 +24,6 @@ public class LevelProgressBarUI : MonoBehaviour
     }
     public void UpdateBar()
     {
-        _targetProgress = _levelManager.RatioSpawned;
+        _targetProgress = _levelManager.LevelProgress;
     }
 }

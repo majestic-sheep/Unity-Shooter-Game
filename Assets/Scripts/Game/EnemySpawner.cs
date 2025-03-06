@@ -13,15 +13,29 @@ public class EnemySpawningManager : MonoBehaviour
 
     private const float SPAWNMARGIN = 15f;
 
+    private bool _spawning;
+    public bool Spawning
+    {
+        set
+        {
+            _spawning = value;
+            if (value)
+            {
+                _lastSpawnTime = Time.time;
+            }
+        }
+    }
+
     public UnityEvent OnEnemySpawned;
     void Awake()
     {
         _lastSpawnTime = Time.time - LevelSpawnDelay;
         SpawnDelayMultModifier = 1;
+        _spawning = true;
     }
     void Update()
     {
-        if (Time.time >= _lastSpawnTime + LevelSpawnDelay * SpawnDelayMultModifier)
+        if (_spawning && Time.time >= _lastSpawnTime + LevelSpawnDelay * SpawnDelayMultModifier)
         {
             Spawn();
         }
@@ -56,5 +70,9 @@ public class EnemySpawningManager : MonoBehaviour
         Instantiate(enemy, position, Quaternion.identity);
         _lastSpawnTime = Time.time;
         OnEnemySpawned.Invoke();
+    }
+    public void ResetEnemySpawnTimer()
+    {
+        _lastSpawnTime = Time.time;
     }
 }

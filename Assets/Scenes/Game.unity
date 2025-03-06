@@ -771,12 +771,40 @@ MonoBehaviour:
   Level: 1
   _playerHealth: {fileID: 1972815768}
   _levelHealingRatio: 0.5
+  IsIntermission: 0
+  _intermissionStartTime: 0
+  _intermissionTime: 8
+  _levelsBeforeIntermission: 5
   OnLevelChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2010730444}
         m_TargetAssemblyTypeName: LevelDisplayUI, Assembly-CSharp
-        m_MethodName: UpdateLevel
+        m_MethodName: UpdateLevelName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 539775486}
+        m_TargetAssemblyTypeName: EnemySpawningManager, Assembly-CSharp
+        m_MethodName: ResetEnemySpawnTimer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1995153982}
+        m_TargetAssemblyTypeName: LevelProgressBarUI, Assembly-CSharp
+        m_MethodName: UpdateBar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -817,6 +845,7 @@ MonoBehaviour:
   _effectDisplayY0: 337.1
   _effectDisplayYIncrement: -20
   _effectDisplayPrefab: {fileID: 6985103388570894232, guid: 6ff00d0ef1f638f43aa1440f516213c9, type: 3}
+  Effects: []
 --- !u!114 &539775494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,6 +1458,7 @@ MonoBehaviour:
   _effectDisplayY0: 350
   _effectDisplayYIncrement: -40
   _effectDisplayPrefab: {fileID: 6985103388570894232, guid: 6ff00d0ef1f638f43aa1440f516213c9, type: 3}
+  Effects: []
 --- !u!1 &1972815760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1980,7 +2010,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level: 1'
+  m_text: Level 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
