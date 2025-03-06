@@ -18,8 +18,15 @@ public class EnemyAwareness : MonoBehaviour
     void Update()
     {
         Vector2 enemyToPlayerVector = _playerTransform.position - transform.position;
-        if (enemyToPlayerVector.magnitude <= _stopChasingDistance) DirectionToPlayer = Vector2.zero;
-        else DirectionToPlayer = enemyToPlayerVector.normalized;
-        AwareOfPlayer = enemyToPlayerVector.magnitude <= _playerAwarenessDistance;
+        if (enemyToPlayerVector.magnitude <= _stopChasingDistance)
+            DirectionToPlayer = Vector2.zero;
+        else
+            DirectionToPlayer = enemyToPlayerVector.normalized;
+        if (enemyToPlayerVector.magnitude <= _playerAwarenessDistance)
+            NoticePlayer();
+    }
+    public void NoticePlayer()
+    {
+        AwareOfPlayer = true;
     }
 }
