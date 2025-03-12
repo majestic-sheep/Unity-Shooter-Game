@@ -1220,7 +1220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b873ac3b7d28fd740921cc7a0dc354b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameProgress: {fileID: 539775488}
 --- !u!114 &1581833723
 MonoBehaviour:
   m_ObjectHideFlags: 0

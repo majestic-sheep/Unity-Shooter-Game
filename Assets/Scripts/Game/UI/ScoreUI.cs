@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class ScoreUI : MonoBehaviour
 {
-    [SerializeField] private GameProgress _gameProgress;
     public void UpdateScore()
     {
-        gameObject.GetComponent<TMP_Text>().text = $"Score: {_gameProgress.Score}";
+        gameObject.GetComponent<TMP_Text>().text = $"Score: {GameProgress.Instance.Score}";
     }
 }

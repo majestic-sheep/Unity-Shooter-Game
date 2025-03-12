@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.Events;
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance;
+
     [SerializeField] private GameObject _enemy1Prefab;
     [SerializeField] private GameObject _enemy2Prefab;
     [SerializeField] private GameObject _enemy3Prefab;
@@ -68,8 +70,15 @@ public class LevelManager : MonoBehaviour
             else return RatioSpawned;
         }
     }
-    private void Start()
+    private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         SetRemainingToCount();
         _enemySpawningManager.LevelSpawnDelay = _enemySpawnDelay;
     }

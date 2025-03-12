@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SceneFade _sceneFade;
     public void OnPlayerDied()
     {
+        PersistentDataManager.Instance.CollectLeaderstats();
         Invoke(nameof(EndGame), _timeToWaitBeforeExit);
     }
     private void EndGame()
