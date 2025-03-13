@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class EnemySpawningManager : MonoBehaviour
 {
+    public static EnemySpawningManager Instance { get; private set; }
 
-    [SerializeField] private LevelManager _levelManager;
     public float LevelSpawnDelay;
     public float SpawnDelayMultModifier;
     private float _lastSpawnTime;
@@ -29,6 +29,13 @@ public class EnemySpawningManager : MonoBehaviour
     public UnityEvent OnEnemySpawned;
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         _lastSpawnTime = Time.time - LevelSpawnDelay;
         SpawnDelayMultModifier = 1;
         _spawning = true;
@@ -42,7 +49,7 @@ public class EnemySpawningManager : MonoBehaviour
     }
     void Spawn()
     {
-        GameObject enemy = _levelManager.GetEnemyToSpawn();
+        GameObject enemy = LevelManager.Instance.GetEnemyToSpawn();
         if (enemy == null) return;
         Vector2 position;
         if (Random.value < 0.5f)

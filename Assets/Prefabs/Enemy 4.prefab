@@ -160,6 +160,10 @@ PrefabInstance:
       propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
       value: SetTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 6920786664400288756, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _killScore
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7175661335821184716, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: m_Size.x
       value: 4.6687403

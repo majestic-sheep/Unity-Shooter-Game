@@ -6,13 +6,12 @@ using UnityEngine;
 using UnityEngine.Events;
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance;
+    public static LevelManager Instance { get; private set; }
 
     [SerializeField] private GameObject _enemy1Prefab;
     [SerializeField] private GameObject _enemy2Prefab;
     [SerializeField] private GameObject _enemy3Prefab;
     [SerializeField] private GameObject _enemy4Prefab;
-    [SerializeField] private EnemySpawningManager _enemySpawningManager;
     public int Level = 1;
     private int _enemy1Count = 0; // Purple
     private int _enemy2Count = 1; // Green
@@ -80,7 +79,7 @@ public class LevelManager : MonoBehaviour
         Instance = this;
 
         SetRemainingToCount();
-        _enemySpawningManager.LevelSpawnDelay = _enemySpawnDelay;
+        EnemySpawningManager.Instance.LevelSpawnDelay = _enemySpawnDelay;
     }
     private void Update()
     {
@@ -108,13 +107,13 @@ public class LevelManager : MonoBehaviour
     {
         _intermissionStartTime = Time.time;
         IsIntermission = true;
-        _enemySpawningManager.Spawning = false;
+        EnemySpawningManager.Instance.Spawning = false;
         OnLevelChanged.Invoke();
     }
     private void EndIntermission()
     {
         IsIntermission = false;
-        _enemySpawningManager.Spawning = true;
+        EnemySpawningManager.Instance.Spawning = true;
         NextLevel();
     }
     private void NextLevel()
@@ -122,7 +121,7 @@ public class LevelManager : MonoBehaviour
         Level++;
         SetNewEnemyCounts();
         SetRemainingToCount();
-        _enemySpawningManager.LevelSpawnDelay = _enemySpawnDelay;
+        EnemySpawningManager.Instance.LevelSpawnDelay = _enemySpawnDelay;
         _playerHealth.HealRatio(_levelHealingRatio);
         OnLevelChanged.Invoke();
     }

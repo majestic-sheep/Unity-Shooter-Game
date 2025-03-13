@@ -5,8 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     [SerializeField] private float _timeToWaitBeforeExit;
-    [SerializeField] private SceneFade _sceneFade;
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     public void OnPlayerDied()
     {
         PersistentDataManager.Instance.CollectLeaderstats();
@@ -14,6 +24,6 @@ public class GameManager : MonoBehaviour
     }
     private void EndGame()
     {
-        _sceneFade.SwitchToScene("Main Menu");
+        SceneFade.Instance.SwitchToScene("Main Menu");
     }
 }

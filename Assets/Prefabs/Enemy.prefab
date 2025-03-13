@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 1164217623290532656}
   - component: {fileID: 1208905043679475325}
   - component: {fileID: 5589525271739089523}
-  - component: {fileID: 1819156799653259534}
+  - component: {fileID: 6920786664400288756}
   - component: {fileID: 4023730552477937009}
   m_Layer: 0
   m_Name: Enemy
@@ -523,7 +523,7 @@ MonoBehaviour:
           m_StringArgument: IsDead
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1819156799653259534}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EnemyScoreAllocator, Assembly-CSharp
         m_MethodName: AddPoints
         m_Mode: 1
@@ -574,7 +574,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1819156799653259534
+--- !u!114 &6920786664400288756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -583,10 +583,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9032248058807379862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228423f8b2b86c84ea710aba3f190999, type: 3}
+  m_Script: {fileID: 11500000, guid: ba7a58fb373d273429e920910be433a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _killScore: 3
+  _killScore: 1
 --- !u!114 &4023730552477937009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,7 +600,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collectablePrefab: {fileID: 1735077963604373599, guid: d4953b4ad6da0184fa50fc5b3b4990a0, type: 3}
-  _lootTableManager: {fileID: 0}
   _dropChance: 0.5
   _potionWeight: 1
   _healthWeight: 1

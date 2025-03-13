@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneFade : MonoBehaviour
 {
+    public static SceneFade Instance { get; private set; }
+
     private const float MAGNITUDE = 2709.64f;
     [SerializeField] private Image _image;
     [SerializeField] private float _fadeLerpRate;
@@ -16,8 +18,15 @@ public class SceneFade : MonoBehaviour
 
     private string _toSceneName;
     private float _startTime;
-    private void Start()
+    private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         _startTime = Time.time;
     }
     void FixedUpdate()

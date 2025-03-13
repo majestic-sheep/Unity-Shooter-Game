@@ -5,11 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private SceneFade _sceneFade;
+    public static MenuManager Instance;
+
     [SerializeField] private GameObject[] canvases;
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     public void Play()
     {
-        _sceneFade.SwitchToScene("Game");
+        SceneFade.Instance.SwitchToScene("Game");
     }
     public void Exit()
     {

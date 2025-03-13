@@ -13,7 +13,7 @@ public class EnemyAttack : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (!collision.gameObject.GetComponent<PlayerMovement>()) return;
+        if (!collision.gameObject.CompareTag("Player")) return;
         if (Time.time < _lastAttackTime + _attackDelay) return;
 
         Health playerHealth = collision.gameObject.GetComponent<Health>();

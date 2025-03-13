@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class RunStatsCollection : ScriptableObject
+public class RunStatsCollection
 {
     public int Month;
     public int Day;

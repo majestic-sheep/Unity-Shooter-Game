@@ -6,14 +6,22 @@ using UnityEngine;
 
 public class PotionManager : MonoBehaviour
 {
+    public static PotionManager Instance { get; private set; }
+
     public Sprite PotionSprite;
     private string[] _effect_names;
     private Color[] _colors;
 
-    [SerializeField] private EffectDisplayManager _effectDisplayManager;
     [SerializeField] private Health _playerHealth;
-    public void Start()
+    public void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         _effect_names = new string[] { "Health", "Haste", "Power", "Luck", "Stench", "Poison", "Slow", "Linger" };
         ShuffleColors();
     }
@@ -53,6 +61,6 @@ public class PotionManager : MonoBehaviour
     {
         Color color = potion.ItemColor;
         string effectName = potion.Effect;
-        Effect effect = new Effect(_effectDisplayManager, _playerHealth, effectName, color);
+        new Effect(_playerHealth, effectName, color);
     }
 }

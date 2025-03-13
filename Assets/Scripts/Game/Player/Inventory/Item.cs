@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Item : ScriptableObject
+public class Item
 {
     public Sprite ItemSprite;
     public Color ItemColor;
@@ -16,9 +16,11 @@ public class Item : ScriptableObject
     }
     public virtual Item Clone()
     {
-        Item item = new Item();
-        item.ItemSprite = ItemSprite;
-        item.ItemColor = ItemColor;
+        Item item = new()
+        {
+            ItemSprite = ItemSprite,
+            ItemColor = ItemColor
+        };
         return item;
     }
 }

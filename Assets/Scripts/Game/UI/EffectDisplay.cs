@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EffectDisplay : MonoBehaviour
 {
-    public EffectDisplayManager DisplayManager;
     public Effect Effect;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _durationText;

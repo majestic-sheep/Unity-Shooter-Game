@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class HeldGunPositioning : MonoBehaviour
 {
+    public static HeldGunPositioning Instance { get; private set; }
+
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _playerTransform;
     [SerializeField] private Transform _graphicsTransform;
@@ -14,6 +16,13 @@ public class HeldGunPositioning : MonoBehaviour
     public float angle;
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         _defaultScale = transform.localScale.y;
         _defaultXOffset = transform.position.x;
     }

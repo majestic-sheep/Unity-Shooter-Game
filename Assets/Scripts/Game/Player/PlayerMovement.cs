@@ -6,12 +6,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance;
+
     [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
     public float MovementSpeed;
     [SerializeField] private float _acceleration;
     private Vector2 _velocity = Vector2.zero;
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     private void FixedUpdate()
     {
         _velocity = Vector2.Lerp(_velocity, _movementInput * MovementSpeed, _acceleration);

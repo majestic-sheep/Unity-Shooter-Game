@@ -5,12 +5,13 @@ using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory Instance { get; private set; }
+
     [SerializeField] private GameObject _collectablePrefab;
 
     public Sprite PistolSprite;
     public Sprite RifleSprite;
     public Sprite ShotgunSprite;
-    [SerializeField] private PlayerUseItem _playerShoot;
     [SerializeField] private SpriteRenderer _itemSpriteRenderer;
     public List<Item> Items = new();
     public int MaxInventorySize = 9;
@@ -21,8 +22,15 @@ public class Inventory : MonoBehaviour
             return Items[CurrentIndex];
         }
     }
-    private void Start()
+    private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         Items.Add(new Weapon("pistol", "infiAmmo"));
         CurrentIndex = 0;
     }

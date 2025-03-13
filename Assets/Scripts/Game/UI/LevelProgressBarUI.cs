@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class LevelProgressBarUI : MonoBehaviour
 {
-    [SerializeField] private LevelManager _levelManager;
     [SerializeField] private Image _levelProgressBarForeground;
 
     [SerializeField] private float _displayedProgress;
@@ -13,8 +12,8 @@ public class LevelProgressBarUI : MonoBehaviour
     [SerializeField] private float _progressAcceleration;
     public void Update()
     {
-        if (_levelManager.IsIntermission) {
-            _displayedProgress = _levelManager.LevelProgress;
+        if (LevelManager.Instance.IsIntermission) {
+            _displayedProgress = LevelManager.Instance.LevelProgress;
         }
     }
     public void FixedUpdate()
@@ -24,6 +23,6 @@ public class LevelProgressBarUI : MonoBehaviour
     }
     public void UpdateBar()
     {
-        _targetProgress = _levelManager.LevelProgress;
+        _targetProgress = LevelManager.Instance.LevelProgress;
     }
 }

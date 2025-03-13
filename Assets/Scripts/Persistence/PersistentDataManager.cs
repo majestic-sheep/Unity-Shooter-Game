@@ -27,11 +27,13 @@ public class PersistentDataManager : MonoBehaviour
     {
         if (BestRun == null || GameProgress.Instance.Score > BestRun.Score)
         {
-            BestRun = ScriptableObject.CreateInstance<RunStatsCollection>();
-            BestRun.Score = GameProgress.Instance.Score;
-            BestRun.DateTime = DateTime.Now;
-            BestRun.RunTime = Time.timeSinceLevelLoad;
-            BestRun.Level = LevelManager.Instance.Level;
+            BestRun = new()
+            {
+                Score = GameProgress.Instance.Score,
+                DateTime = DateTime.Now,
+                RunTime = Time.timeSinceLevelLoad,
+                Level = LevelManager.Instance.Level
+            };
             SaveProgress();
         }
     }

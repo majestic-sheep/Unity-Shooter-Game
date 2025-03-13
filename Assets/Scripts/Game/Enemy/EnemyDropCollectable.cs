@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyDropCollectable : MonoBehaviour
 {
     [SerializeField] private GameObject _collectablePrefab;
-    [SerializeField] private LootTableManager _lootTableManager;
     [SerializeField] private float _dropChance;
     [SerializeField] private float _potionWeight;
     [SerializeField] private float _healthWeight;
@@ -29,11 +28,10 @@ public class EnemyDropCollectable : MonoBehaviour
     private void Start()
     {
         _dropYOffset = GetComponent<Transform>().localScale.y * GetComponent<SpriteRenderer>().size.y * -0.4f;
-        _lootTableManager = FindAnyObjectByType<LootTableManager>();
     }
     public void DropCollectable()
     {
-        if (Random.value > _dropChance + _lootTableManager.DropChanceModifier) return;
+        if (Random.value > _dropChance + LootTableManager.Instance.DropChanceModifier) return;
 
         float rand = Random.Range(0, _potionWeight + _weaponWeight);
         if (rand <= _potionWeight) DropPotion();
@@ -87,7 +85,7 @@ public class EnemyDropCollectable : MonoBehaviour
     }
     private string ChooseWeaponModifier()
     {
-        if (Random.value > _modifierChance + _lootTableManager.ModifierChanceModifier) return "";
+        if (Random.value > _modifierChance + LootTableManager.Instance.ModifierChanceModifier) return "";
 
         float rand = Random.Range(0, _fastWeight + _splitWeight + _heavyWeight);
         if (rand <= _fastWeight) return "fast";

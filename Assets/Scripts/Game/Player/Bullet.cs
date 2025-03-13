@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     {
         _camera = Camera.main;
         transform.localScale *= _mOfDamageToLocalScale * Damage + _bOfDamageToLocalScale;
-        _camera.GetComponent<CameraShake>().ShakeMagnitude += Damage / 10;
+        CameraShake.Instance.ShakeMagnitude += Damage / 10;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

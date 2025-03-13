@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CollectableBehavior : MonoBehaviour
 {
-    [SerializeField] private Inventory _inventory;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     private Vector2 _initPos;
     private float _initTime;
@@ -19,7 +18,6 @@ public class CollectableBehavior : MonoBehaviour
     private Item _item;
     void Start()
     {
-        _inventory = FindAnyObjectByType<Inventory>();
         _initPos = transform.position;
         _initTime = Time.time;
     }
@@ -49,14 +47,14 @@ public class CollectableBehavior : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.GetComponent<PlayerMovement>()) return;
-        if (_inventory.Items.Count >= _inventory.MaxInventorySize) return;
+        if (!other.CompareTag("Player")) return;
+        if (Inventory.Instance.Items.Count >= Inventory.Instance.MaxInventorySize) return;
         Collect();
     }
     public void Collect()
     {
         if (_item != null)
-            _inventory.Add(_item);
+            Inventory.Instance.Add(_item);
         Destroy(gameObject);
     }
     public void SetItem(Item item)

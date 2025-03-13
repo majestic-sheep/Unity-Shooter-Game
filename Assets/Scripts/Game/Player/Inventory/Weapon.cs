@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Weapon : Item
 {
-    private Inventory _inventory;
-
     public string WeaponType;
     public string Modifier;
     public float BulletCount;
@@ -19,22 +17,17 @@ public class Weapon : Item
     public bool InfiAmmo;
     public Weapon()
     {
-        _inventory = FindAnyObjectByType<Inventory>();
         WeaponType = null;
         Modifier = null;
     }
     public Weapon(string type)
     {
-        _inventory = FindAnyObjectByType<Inventory>();
-
         if (SetTypeData(type)) WeaponType = type;
         else WeaponType = null;
         Modifier = null;
     }
     public Weapon(string type, string modifier)
     {
-        _inventory = FindAnyObjectByType<Inventory>();
-
         if (SetTypeData(type)) WeaponType = type;
         else WeaponType = null;
         if (SetModifierData(modifier)) Modifier = modifier;
@@ -50,7 +43,7 @@ public class Weapon : Item
             BulletSpeed = 30;
             FireDelay = 1;
             Ammo = 30;
-            ItemSprite = _inventory.PistolSprite;
+            ItemSprite = Inventory.Instance.PistolSprite;
             ItemColor = Color.white;
             return true;
         }
@@ -62,7 +55,7 @@ public class Weapon : Item
             BulletSpeed = 50;
             FireDelay = 0.3125f;
             Ammo = 60;
-            ItemSprite = _inventory.RifleSprite;
+            ItemSprite = Inventory.Instance.RifleSprite;
             ItemColor = Color.white;
             return true;
         }
@@ -74,7 +67,7 @@ public class Weapon : Item
             BulletSpeed = 25;
             FireDelay = 1.3f;
             Ammo = 15;
-            ItemSprite = _inventory.ShotgunSprite;
+            ItemSprite = Inventory.Instance.ShotgunSprite;
             ItemColor = Color.white;
             return true;
         }
@@ -136,18 +129,20 @@ public class Weapon : Item
     }
     public override Item Clone()
     {
-        Weapon weapon = new Weapon();
-        weapon.WeaponType = WeaponType;
-        weapon.Modifier = Modifier;
-        weapon.BulletCount = BulletCount;
-        weapon.BulletVelocityMargin = BulletVelocityMargin;
-        weapon.BulletDamage = BulletDamage;
-        weapon.BulletSpeed = BulletSpeed;
-        weapon.FireDelay = FireDelay;
-        weapon.Ammo = Ammo;
-        weapon.InfiAmmo = InfiAmmo;
-        weapon.ItemSprite = ItemSprite;
-        weapon.ItemColor = ItemColor;
+        Weapon weapon = new()
+        {
+            WeaponType = WeaponType,
+            Modifier = Modifier,
+            BulletCount = BulletCount,
+            BulletVelocityMargin = BulletVelocityMargin,
+            BulletDamage = BulletDamage,
+            BulletSpeed = BulletSpeed,
+            FireDelay = FireDelay,
+            Ammo = Ammo,
+            InfiAmmo = InfiAmmo,
+            ItemSprite = ItemSprite,
+            ItemColor = ItemColor
+        };
         return weapon;
     }
 }

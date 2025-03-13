@@ -304,17 +304,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2801caf68e4b4b24d9a688d32b1155bc, type: 3}
---- !u!114 &320617933 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5699325751226180280, guid: 2801caf68e4b4b24d9a688d32b1155bc, type: 3}
-  m_PrefabInstance: {fileID: 320617932}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1ee9cc197ab6643a80545011b7fd32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &398520236
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,11 +629,10 @@ GameObject:
   - component: {fileID: 539775487}
   - component: {fileID: 539775486}
   - component: {fileID: 539775488}
-  - component: {fileID: 539775489}
+  - component: {fileID: 539775495}
   - component: {fileID: 539775490}
   - component: {fileID: 539775491}
   - component: {fileID: 539775492}
-  - component: {fileID: 539775493}
   - component: {fileID: 539775494}
   m_Layer: 0
   m_Name: Manager
@@ -665,7 +653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c93e74c339750384aaafb3b58ec23099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelManager: {fileID: 539775491}
   LevelSpawnDelay: 0
   SpawnDelayMultModifier: 0
   OnEnemySpawned:
@@ -725,18 +712,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &539775489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539775485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344610527dd0df5449cd8f59419944a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &539775490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,7 +725,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToWaitBeforeExit: 3
-  _sceneFade: {fileID: 320617933}
 --- !u!114 &539775491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,7 +741,6 @@ MonoBehaviour:
   _enemy2Prefab: {fileID: 3715662865039763127, guid: d867c2d9f78262d48a0d7640209a0ae9, type: 3}
   _enemy3Prefab: {fileID: 8423829126382888793, guid: 7ac2bdda58965bb419053295c49a7955, type: 3}
   _enemy4Prefab: {fileID: 345863184071228464, guid: 81b4dea94d449c7418dfa92562c97342, type: 3}
-  _enemySpawningManager: {fileID: 539775486}
   Level: 1
   _playerHealth: {fileID: 1972815768}
   _levelHealingRatio: 0.5
@@ -827,25 +800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PotionSprite: {fileID: 21300000, guid: 51a2785846c0ee340b95266c7e436769, type: 3}
-  _effectDisplayManager: {fileID: 1722587509}
   _playerHealth: {fileID: 1972815768}
---- !u!114 &539775493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539775485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6d3fa89e14332a44b7e5c9d42a75a47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _effectDisplayX: -800
-  _effectDisplayY0: 337.1
-  _effectDisplayYIncrement: -20
-  _effectDisplayPrefab: {fileID: 6985103388570894232, guid: 6ff00d0ef1f638f43aa1440f516213c9, type: 3}
-  Effects: []
 --- !u!114 &539775494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,6 +815,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DropChanceModifier: 0
   ModifierChanceModifier: 0
+--- !u!114 &539775495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539775485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344610527dd0df5449cd8f59419944a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1182327497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slotPrefab: {fileID: 2564215775761819830, guid: 8c8fd17c37965a14fa46dc70b00f0ae3, type: 3}
-  _inventory: {fileID: 1972815771}
   _rootY: -450
   _slotSpacing: 200
 --- !u!114 &1722587509
@@ -1457,7 +1423,6 @@ MonoBehaviour:
   _effectDisplayY0: 350
   _effectDisplayYIncrement: -40
   _effectDisplayPrefab: {fileID: 6985103388570894232, guid: 6ff00d0ef1f638f43aa1440f516213c9, type: 3}
-  Effects: []
 --- !u!1 &1972815760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,7 +1443,7 @@ GameObject:
   - component: {fileID: 1972815769}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1859,8 +1824,6 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 905713659577773916, guid: 505d33efc362fc94a8556009fd303895, type: 3}
   _heldGun: {fileID: 1505055217}
   _muzzleTransform: {fileID: 1488069324}
-  _inventory: {fileID: 1972815771}
-  _potionManager: {fileID: 539775492}
   DamageMultiplier: 1
 --- !u!114 &1972815771
 MonoBehaviour:
@@ -1878,9 +1841,7 @@ MonoBehaviour:
   PistolSprite: {fileID: 21300000, guid: 1f581d6099dd6af47a780d0afd72cf97, type: 3}
   RifleSprite: {fileID: 21300000, guid: e303090f29a8e844984ba67513d48c93, type: 3}
   ShotgunSprite: {fileID: 21300000, guid: 5ad7d543e8ae2124c82d7c6ec374ec4b, type: 3}
-  _playerShoot: {fileID: 1972815770}
   _itemSpriteRenderer: {fileID: 1246953743}
-  Items: []
   MaxInventorySize: 9
 --- !u!1 &1995153980
 GameObject:
@@ -1933,7 +1894,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b46b986f073a14b967d8fccb424869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelManager: {fileID: 539775491}
   _levelProgressBarForeground: {fileID: 398520238}
   _displayedProgress: 0
   _progressAcceleration: 0.5
@@ -1988,7 +1948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27329e9db921a694f9df4ab072d18bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelManager: {fileID: 539775491}
 --- !u!114 &2010730445
 MonoBehaviour:
   m_ObjectHideFlags: 0

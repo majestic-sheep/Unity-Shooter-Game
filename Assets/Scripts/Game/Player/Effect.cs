@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Effect : ScriptableObject
+public class Effect
 {
     public string EffectName;
     private float _startTime;
     private float _duration;
     public Color Color;
 
-    private EffectDisplayManager _displayManager;
     private Health _playerHealth;
     public int RemainingSeconds
     {
@@ -26,12 +25,11 @@ public class Effect : ScriptableObject
             _duration = value + Time.time - _startTime;
         }
     }
-    public Effect(EffectDisplayManager displayManager, Health playerHealth, string effectType, Color color)
+    public Effect(Health playerHealth, string effectType, Color color)
     {
         EffectName = effectType;
         _startTime = Time.time;
         Color = color;
-        _displayManager = displayManager;
         _playerHealth = playerHealth;
         StartEffect();
     }
@@ -52,7 +50,7 @@ public class Effect : ScriptableObject
         else if (EffectName == "Poison") StartPoisonEffect();
         else if (EffectName == "Slow") StartSlowEffect();
         else if (EffectName == "Linger") StartLingerEffect();
-        _displayManager.AddEffectToDisplay(this);
+        EffectDisplayManager.Instance.AddEffectToDisplay(this);
     }
     public void StartHealthEffect()
     {
@@ -61,24 +59,23 @@ public class Effect : ScriptableObject
     }
     public void StartHasteEffect()
     {
-        FindAnyObjectByType<PlayerMovement>().MovementSpeed *= 2;
+        PlayerMovement.Instance.MovementSpeed *= 2;
         _duration = 30;
     }
     public void StartPowerEffect()
     {
-        FindAnyObjectByType<PlayerUseItem>().DamageMultiplier *= 2;
+        PlayerUseItem.Instance.DamageMultiplier *= 2;
         _duration = 20;
     }
     public void StartLuckEffect()
     {
-        LootTableManager lootTableManager = FindAnyObjectByType<LootTableManager>();
-        lootTableManager.DropChanceModifier += 0.2f;
-        lootTableManager.ModifierChanceModifier += 0.3f;
+        LootTableManager.Instance.DropChanceModifier += 0.2f;
+        LootTableManager.Instance.ModifierChanceModifier += 0.3f;
         _duration = 60;
     }
     public void StartStenchEffect()
     {
-        FindAnyObjectByType<EnemySpawningManager>().SpawnDelayMultModifier *= 2;
+        EnemySpawningManager.Instance.SpawnDelayMultModifier *= 2;
         _duration = 40;
     }
     public void StartPoisonEffect()
@@ -88,13 +85,13 @@ public class Effect : ScriptableObject
     }
     public void StartSlowEffect()
     {
-        FindAnyObjectByType<PlayerMovement>().MovementSpeed *= 0.5f;
+        PlayerMovement.Instance.MovementSpeed *= 0.5f;
         _duration = 15;
     }
 
     public void StartLingerEffect()
     {
-        foreach (Effect effect in _displayManager.Effects)
+        foreach (Effect effect in EffectDisplayManager.Instance.Effects)
         {
             effect.RemainingSeconds *= 2;
         }
@@ -107,28 +104,27 @@ public class Effect : ScriptableObject
         else if (EffectName == "Luck") EndLuckEffect();
         else if (EffectName == "Stench") EndStenchEffect();
         else if (EffectName == "Slow") EndSlowEffect();
-        _displayManager.RemoveEffect(this);
+        EffectDisplayManager.Instance.RemoveEffect(this);
     }
     public void EndHasteEffect()
     {
-        FindAnyObjectByType<PlayerMovement>().MovementSpeed *= 0.5f;
+        PlayerMovement.Instance.MovementSpeed *= 0.5f;
     }
     public void EndPowerEffect()
     {
-        FindAnyObjectByType<PlayerUseItem>().DamageMultiplier *= 0.5f;
+        PlayerUseItem.Instance.DamageMultiplier *= 0.5f;
     }
     public void EndLuckEffect()
     {
-        LootTableManager lootTableManager = FindAnyObjectByType<LootTableManager>();
-        lootTableManager.DropChanceModifier -= 0.2f;
-        lootTableManager.ModifierChanceModifier -= 0.3f;
+        LootTableManager.Instance.DropChanceModifier -= 0.2f;
+        LootTableManager.Instance.ModifierChanceModifier -= 0.3f;
     }
     public void EndStenchEffect()
     {
-        FindAnyObjectByType<EnemySpawningManager>().SpawnDelayMultModifier *= 0.5f;
+        EnemySpawningManager.Instance.SpawnDelayMultModifier *= 0.5f;
     }
     public void EndSlowEffect()
     {
-        FindAnyObjectByType<PlayerMovement>().MovementSpeed *= 2f;
+        PlayerMovement.Instance.MovementSpeed *= 2f;
     }
 }

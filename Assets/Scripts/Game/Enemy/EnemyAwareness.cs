@@ -9,15 +9,9 @@ public class EnemyAwareness : MonoBehaviour
     public Vector2 DirectionToPlayer {  get; private set; }
     [SerializeField] private float _playerAwarenessDistance;
     [SerializeField] private float _stopChasingDistance;
-    private Transform _playerTransform;
-    private void Awake()
-    {
-        // As a prefab, it cannot keep editor-assigned serialized variables referenced to external components
-        _playerTransform = FindObjectOfType<PlayerMovement>().transform;
-    }
     void Update()
     {
-        Vector2 enemyToPlayerVector = _playerTransform.position - transform.position;
+        Vector2 enemyToPlayerVector = PlayerMovement.Instance.transform.position - transform.position;
         if (enemyToPlayerVector.magnitude <= _stopChasingDistance)
             DirectionToPlayer = Vector2.zero;
         else

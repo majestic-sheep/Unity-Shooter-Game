@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
+    public static CameraShake Instance { get; private set; }
+
     private Camera cam;
     public float ShakeMagnitude;
     [SerializeField] private float _shakeDecreaseFactor;
-    void Start()
+    void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         cam = GetComponent<Camera>();
     }
     void FixedUpdate()

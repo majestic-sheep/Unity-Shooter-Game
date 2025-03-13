@@ -5,12 +5,22 @@ using UnityEngine;
 
 public class SlotGenerator : MonoBehaviour
 {
+    public static SlotGenerator Instance;
+
     [SerializeField] private GameObject _slotPrefab;
-    [SerializeField] private Inventory _inventory;
     private List<GameObject> _slots = new();
 
     [SerializeField] private float _rootY;
     [SerializeField] private float _slotSpacing;
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     public void Update()
     {
         CheckSlotIcons();
@@ -25,12 +35,12 @@ public class SlotGenerator : MonoBehaviour
     }
     private bool SlotsCorrect()
     {
-        for (int i = 0; i < Mathf.Max(_inventory.Items.Count, _slots.Count); i++)
+        for (int i = 0; i < Mathf.Max(Inventory.Instance.Items.Count, _slots.Count); i++)
         {
             if (i >= _slots.Count) return false;
             Item slotItem = _slots[i].GetComponent<SlotUI>().Item;
-            if (i >= _inventory.Items.Count) return false;
-            Item inventoryItem = _inventory.Items[i];
+            if (i >= Inventory.Instance.Items.Count) return false;
+            Item inventoryItem = Inventory.Instance.Items[i];
 
             if (!slotItem.Equals(inventoryItem)) return false;
         }
@@ -47,10 +57,10 @@ public class SlotGenerator : MonoBehaviour
     }
     private void CreateAllSlots()
     {
-        for (int i = 0; i < _inventory.Items.Count; i++)
+        for (int i = 0; i < Inventory.Instance.Items.Count; i++)
         {
-            Vector2 pos = new Vector2(_slotSpacing * i - 0.5f * _slotSpacing * (_inventory.Items.Count-1), _rootY);
-            CreateSlot(_inventory.Items[i], pos);
+            Vector2 pos = new Vector2(_slotSpacing * i - 0.5f * _slotSpacing * (Inventory.Instance.Items.Count-1), _rootY);
+            CreateSlot(Inventory.Instance.Items[i], pos);
         }
     }
     private void CreateSlot(Item item, Vector2 position)
@@ -64,7 +74,7 @@ public class SlotGenerator : MonoBehaviour
     {
         for (int i = 0; i < _slots.Count; i++)
         {
-            bool active = i == _inventory.CurrentIndex;
+            bool active = i == Inventory.Instance.CurrentIndex;
             _slots[i].GetComponent<SlotUI>().Active = active;
         }
     }

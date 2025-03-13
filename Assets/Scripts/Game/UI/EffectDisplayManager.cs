@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EffectDisplayManager : MonoBehaviour
 {
+    public static EffectDisplayManager Instance;
+
     [SerializeField] private float _effectDisplayX;
     [SerializeField] private float _effectDisplayY0;
     [SerializeField] private float _effectDisplayYIncrement;
@@ -11,6 +13,15 @@ public class EffectDisplayManager : MonoBehaviour
     [SerializeField] private GameObject _effectDisplayPrefab;
     public List<Effect> Effects = new();
     private List<GameObject> _effectDisplays = new();
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     public void DestroyDisplayedEffects()
     {
         foreach (GameObject obj in _effectDisplays)
@@ -26,7 +37,6 @@ public class EffectDisplayManager : MonoBehaviour
             GameObject effectDisplay = Instantiate(_effectDisplayPrefab, transform);
             effectDisplay.transform.localPosition = new Vector2(_effectDisplayX, y);
             EffectDisplay script = effectDisplay.GetComponent<EffectDisplay>();
-            script.DisplayManager = this;
             script.SetEffect(Effects[i]);
             _effectDisplays.Add(effectDisplay);
             y += _effectDisplayYIncrement;

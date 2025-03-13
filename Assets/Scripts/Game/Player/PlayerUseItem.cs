@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerUseItem : MonoBehaviour
 {
+    public static PlayerUseItem Instance { get; private set; }
+
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _heldGun;
     [SerializeField] private Transform _muzzleTransform;
-    [SerializeField] private Inventory _inventory;
-    [SerializeField] private PotionManager _potionManager;
     public float DamageMultiplier;
 
     private bool _firing;
@@ -19,9 +19,9 @@ public class PlayerUseItem : MonoBehaviour
     {
         get
         {
-            if (_inventory.CurrentItem is Weapon)
+            if (Inventory.Instance.CurrentItem is Weapon)
             {
-                return (Weapon)_inventory.CurrentItem;
+                return (Weapon)Inventory.Instance.CurrentItem;
             }
             return null;
         }
@@ -30,12 +30,21 @@ public class PlayerUseItem : MonoBehaviour
     {
         get
         {
-            if (_inventory.CurrentItem is Potion)
+            if (Inventory.Instance.CurrentItem is Potion)
             {
-                return (Potion)_inventory.CurrentItem;
+                return (Potion)Inventory.Instance.CurrentItem;
             }
             return null;
         }
+    }
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
     void Update()
     {
@@ -47,7 +56,7 @@ public class PlayerUseItem : MonoBehaviour
                 FireBullet();
             _lastFireTime = Time.time;
 
-            _inventory.UseAmmo();
+            Inventory.Instance.UseAmmo();
         }
     }
     private void OnUseItem(InputValue inputValue)
@@ -55,8 +64,8 @@ public class PlayerUseItem : MonoBehaviour
         _firing = inputValue.isPressed && CurrentWeapon != null;
         if (inputValue.isPressed && CurrentPotion != null)
         {
-            _potionManager.ExecutePotionEffect(CurrentPotion);
-            _inventory.RemoveCurrentItem();
+            PotionManager.Instance.ExecutePotionEffect(CurrentPotion);
+            Inventory.Instance.RemoveCurrentItem();
         }
     }
     private void FireBullet()

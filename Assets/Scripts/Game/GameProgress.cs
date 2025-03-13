@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class GameProgress : MonoBehaviour
 {
-    public static GameProgress Instance;
+    public static GameProgress Instance { get; private set; }
     public UnityEvent OnScoreChanged;
     public int Score { get; private set; }
     private void Awake()
