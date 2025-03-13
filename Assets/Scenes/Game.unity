@@ -813,8 +813,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dae531353dfda74c819cc374ed26a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DropChanceModifier: 0
-  ModifierChanceModifier: 0
+  LootTable:
+    _dropChance: 0
+    _potionWeight: 0
+    _healthWeight: 0
+    _hasteWeight: 0
+    _powerWeight: 0
+    _luckWeight: 0
+    _stenchWeight: 0
+    _poisonWeight: 0
+    _slowWeight: 0
+    _lingerWeight: 0
+    _weaponWeight: 0
+    _pistolWeight: 0
+    _rifleWeight: 0
+    _shotgunWeight: 0
+    _modifierChance: 0
+    _fastWeight: 0
+    _splitWeight: 0
+    _heavyWeight: 0
+  LuckTable:
+    _dropChance: 0.2
+    _potionWeight: 0
+    _healthWeight: 0
+    _hasteWeight: 0
+    _powerWeight: 0
+    _luckWeight: 0
+    _stenchWeight: 0
+    _poisonWeight: -2
+    _slowWeight: -2
+    _lingerWeight: 0
+    _weaponWeight: 0
+    _pistolWeight: -1
+    _rifleWeight: 0
+    _shotgunWeight: 0
+    _modifierChance: 0.2
+    _fastWeight: 0
+    _splitWeight: 0
+    _heavyWeight: 0
 --- !u!114 &539775495
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -100,6 +100,42 @@ PrefabInstance:
       propertyPath: _modifierChance
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._hasteWeight
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._heavyWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._rifleWeight
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._splitWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._pistolWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._potionWeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._weaponWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._shotgunWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._modifierChance
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _currentHealth
       value: 10

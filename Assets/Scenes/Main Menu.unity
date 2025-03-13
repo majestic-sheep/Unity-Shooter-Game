@@ -928,7 +928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c519deaac6cbdb44cb938410c792bcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneFade: {fileID: 1179614215}
   canvases:
   - {fileID: 310293208}
   - {fileID: 2101296553}
@@ -1519,17 +1518,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100314338}
   m_CullTransparentMesh: 1
---- !u!114 &1179614215 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5699325751226180280, guid: 2801caf68e4b4b24d9a688d32b1155bc, type: 3}
-  m_PrefabInstance: {fileID: 7266684789267535732}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1ee9cc197ab6643a80545011b7fd32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1307009261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,7 +1731,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e307b641e90cfd42a7bbe12bf6b6816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BestRun: {fileID: 0}
+  BestRun:
+    Month: 0
+    Day: 0
+    Year: 0
+    Hour: 0
+    Minute: 0
+    Second: 0
+    Level: 0
+    Score: 0
+    RunTime: 0
 --- !u!4 &1570209217
 Transform:
   m_ObjectHideFlags: 0

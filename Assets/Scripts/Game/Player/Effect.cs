@@ -69,8 +69,9 @@ public class Effect
     }
     public void StartLuckEffect()
     {
-        LootTableManager.Instance.DropChanceModifier += 0.2f;
-        LootTableManager.Instance.ModifierChanceModifier += 0.3f;
+        LootTableManager.Instance.LootTable = 
+            LootTableManager.Instance.LootTable.ModifiedBy(
+                LootTableManager.Instance.LuckTable);
         _duration = 60;
     }
     public void StartStenchEffect()
@@ -116,8 +117,10 @@ public class Effect
     }
     public void EndLuckEffect()
     {
-        LootTableManager.Instance.DropChanceModifier -= 0.2f;
-        LootTableManager.Instance.ModifierChanceModifier -= 0.3f;
+        LootTableManager.Instance.LootTable =
+            LootTableManager.Instance.LootTable.ModifiedBy(
+                LootTableManager.Instance.LuckTable, 
+                -1);
     }
     public void EndStenchEffect()
     {

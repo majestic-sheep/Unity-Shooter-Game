@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: _modifierChance
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._modifierChance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _currentHealth
       value: 20

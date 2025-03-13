@@ -6,8 +6,8 @@ public class LootTableManager : MonoBehaviour
 {
     public static LootTableManager Instance { get; private set; }
 
-    public float DropChanceModifier;
-    public float ModifierChanceModifier;
+    public LootTable LootTable;
+    public LootTable LuckTable;
     private void Awake()
     {
         if (Instance != null)
