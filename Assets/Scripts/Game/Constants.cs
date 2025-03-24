@@ -6,6 +6,6 @@ public class Constants : MonoBehaviour
 {
     public const float LEFTBORDER = -56.59f;
     public const float RIGHTBORDER = 56.59f;
-    public const float TOPBORDER = 33.94f;
-    public const float BOTTOMBORDER = -25.47f;
+    public const float TOPBORDER = 29.94f;
+    public const float BOTTOMBORDER = -29.47f;
 }

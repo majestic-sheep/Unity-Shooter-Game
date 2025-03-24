@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Gadget
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Gadget
   - Water
   - UI
   - 
@@ -62,4 +63,10 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 3645819929
+    locked: 0
+  - name: Gadget
+    uniqueID: 4184026517
+    locked: 0
+  - name: UI
+    uniqueID: 164050973
     locked: 0

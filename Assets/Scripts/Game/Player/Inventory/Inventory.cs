@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
         }
         Instance = this;
 
-        Items.Add(new Weapon("pistol", "infiAmmo"));
+        Add(new Weapon("pistol", "infiAmmo"));
         CurrentIndex = 0;
     }
     public void Update()
@@ -43,7 +43,10 @@ public class Inventory : MonoBehaviour
     }
     public void Add(Item item)
     {
-        Items.Add(item);
+        if (Items.Count >= MaxInventorySize)
+            CreateCollectable(item);
+        else
+            Items.Add(item);
     }
     public void RemoveCurrentItem()
     {
@@ -53,7 +56,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            UpdateDisplayedWeapon();
+            UpdateDisplayedItem();
         }
     }
 
@@ -69,28 +72,33 @@ public class Inventory : MonoBehaviour
         CurrentIndex += value;
         CurrentIndex = Mathf.Clamp(CurrentIndex, 0, Items.Count - 1);
 
-        UpdateDisplayedWeapon();
+        UpdateDisplayedItem();
     }
-    public void UpdateDisplayedWeapon()
+    public void UpdateDisplayedItem()
     {
         _itemSpriteRenderer.sprite = CurrentItem.ItemSprite;
         _itemSpriteRenderer.color = CurrentItem.ItemColor;
     }
     private void OnDrop(InputValue inputValue)
     {
-        if (CurrentItem is Weapon)
+        DropCurrentItem();
+    }
+    private void DropCurrentItem()
+    {
+        if (CurrentItem is Weapon current_weapon)
         {
-            Weapon current_weapon = (Weapon)CurrentItem;
             if (current_weapon.Modifier == "infiAmmo") return;
         }
-
-        GameObject _collectable = Instantiate(_collectablePrefab, transform.position, Quaternion.identity);
-        Transform gunTransform = _itemSpriteRenderer.GetComponentInParent<Transform>();
-        _collectable.transform.position = new Vector2(
-            _collectable.transform.position.x + gunTransform.lossyScale.x * 10f,
-            gunTransform.position.y - 3f);
-        _collectable.GetComponent<CollectableBehavior>().SetItem(CurrentItem);
-
+        CreateCollectable(CurrentItem);
         RemoveCurrentItem();
+    }
+    private void CreateCollectable(Item item)
+    {
+        GameObject _collectable = Instantiate(_collectablePrefab, transform.position, Quaternion.identity);
+        Transform itemSpriteRendererTransform = _itemSpriteRenderer.GetComponentInParent<Transform>();
+        _collectable.transform.position = new Vector2(
+            _collectable.transform.position.x + itemSpriteRendererTransform.lossyScale.x * 10f,
+            itemSpriteRendererTransform.position.y - 3f);
+        _collectable.GetComponent<CollectableBehavior>().SetItem(item);
     }
 }

@@ -19,9 +19,9 @@ public class PlayerUseItem : MonoBehaviour
     {
         get
         {
-            if (Inventory.Instance.CurrentItem is Weapon)
+            if (Inventory.Instance.CurrentItem is Weapon weapon)
             {
-                return (Weapon)Inventory.Instance.CurrentItem;
+                return weapon;
             }
             return null;
         }
@@ -30,9 +30,20 @@ public class PlayerUseItem : MonoBehaviour
     {
         get
         {
-            if (Inventory.Instance.CurrentItem is Potion)
+            if (Inventory.Instance.CurrentItem is Potion potion)
             {
-                return (Potion)Inventory.Instance.CurrentItem;
+                return potion;
+            }
+            return null;
+        }
+    }
+    private Gadget CurrentGadget
+    {
+        get
+        {
+            if (Inventory.Instance.CurrentItem is Gadget gadget)
+            {
+                return gadget;
             }
             return null;
         }
@@ -59,12 +70,30 @@ public class PlayerUseItem : MonoBehaviour
             Inventory.Instance.UseAmmo();
         }
     }
-    private void OnUseItem(InputValue inputValue)
+    public void OnUseItem(InputValue inputValue)
     {
-        _firing = inputValue.isPressed && CurrentWeapon != null;
-        if (inputValue.isPressed && CurrentPotion != null)
+        if (inputValue.isPressed && !ScreenClickManager.Instance.MouseIsOverScreen)
+            return;
+        if (inputValue.isPressed)
+        {
+            if (CurrentWeapon != null)
+            {
+                _firing = true;
+            }
+        }
+        else
+        {
+            _firing = false;
+            return;
+        }
+        if (CurrentPotion != null)
         {
             PotionManager.Instance.ExecutePotionEffect(CurrentPotion);
+            Inventory.Instance.RemoveCurrentItem();
+        }
+        else if (CurrentGadget != null)
+        {
+            CurrentGadget.Deploy();
             Inventory.Instance.RemoveCurrentItem();
         }
     }

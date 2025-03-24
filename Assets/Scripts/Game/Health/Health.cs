@@ -8,6 +8,8 @@ public class Health : MonoBehaviour
     [SerializeField] private float _maximumHealth;
     [SerializeField] private float _currentHealth;
     [SerializeField] private bool _destroyOnDeath;
+    public float DamageMultiplier;
+    public int InvincibilityFactors;
     public float _destroyDelay;
     private bool _markedDead;
     public float PercentHealth
@@ -19,9 +21,22 @@ public class Health : MonoBehaviour
     }
     public UnityEvent OnDied;
     public UnityEvent OnHealthChanged;
+    public UnityEvent<float> OnDamageBlocked;
+    private void Awake()
+    {
+        DamageMultiplier = 1f;
+        InvincibilityFactors = 0;
+    }
     public void Damage(float damage)
     {
-        _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maximumHealth);
+        if (InvincibilityFactors > 0)
+        {
+            OnDamageBlocked.Invoke(damage);
+            return;
+        }
+
+        float effectiveDamage = damage * DamageMultiplier;
+        _currentHealth = Mathf.Clamp(_currentHealth - effectiveDamage, 0, _maximumHealth);
         OnHealthChanged.Invoke();
         if (_currentHealth == 0 && !_markedDead)
         {

@@ -1,17 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
+[Serializable]
 public class Weapon : Item
 {
     public string WeaponType;
     public string Modifier;
     public float BulletCount;
+    public float BurstDelay;
+    public float BulletSpeed;
     public float BulletVelocityMargin;
     public float BulletDamage;
-    public float BulletSpeed;
     public float FireDelay;
     public int Ammo;
     public bool InfiAmmo;

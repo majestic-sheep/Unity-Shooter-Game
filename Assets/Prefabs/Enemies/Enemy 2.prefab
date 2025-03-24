@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: _killScore
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4013567764242213168, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fedc638c0f2e4b84a86ce809d05f799e, type: 2}
     - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _modifierChance
       value: 0.2
@@ -87,6 +91,10 @@ PrefabInstance:
     - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _lootTable._modifierChance
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910931881198465259, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.28
       objectReference: {fileID: 0}
     - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _currentHealth
@@ -96,14 +104,6 @@ PrefabInstance:
       propertyPath: _maximumHealth
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
-      propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[5].m_Target
-      value: 
-      objectReference: {fileID: -5240239974398450031}
-    - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
-      propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
-      value: SetTrigger
-      objectReference: {fileID: 0}
     - target: {fileID: 6920786664400288756, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _killScore
       value: 5
@@ -112,6 +112,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 2b8630f74453d8341ae7dcea3ce8b0d2, type: 3}
+    - target: {fileID: 8357805783301543887, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_Size.x
+      value: 20.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357805783301543887, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_Size.y
+      value: 20.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357805783301543887, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b8630f74453d8341ae7dcea3ce8b0d2, type: 3}
+    - target: {fileID: 8357805783301543887, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9032248058807379862, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: m_Name
       value: Enemy 2
@@ -119,34 +135,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9032248058807379862, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -5240239974398450031}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
---- !u!1 &3715662865039763127 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9032248058807379862, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
-  m_PrefabInstance: {fileID: 5676877977122685217}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &-5240239974398450031
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3715662865039763127}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fedc638c0f2e4b84a86ce809d05f799e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

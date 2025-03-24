@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _mOfDamageToLocalScale;
     [SerializeField] private float _bOfDamageToLocalScale;
     public float Damage { private get; set; }
+    public string TargetTag;
     private void Start()
     {
         _camera = Camera.main;
@@ -19,7 +20,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.GetComponent<EnemyMovement>())
         {
-            other.gameObject.GetComponent<Health>().Damage(Damage);
+            other.gameObject.GetComponent<Health>()?.Damage(Damage);
             Destroy(gameObject);
         }
     }

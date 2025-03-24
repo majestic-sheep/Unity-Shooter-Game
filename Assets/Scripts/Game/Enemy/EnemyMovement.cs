@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private EnemyAwareness _enemyAwareness;
     [SerializeField] private Vector2 _targetDirection;
@@ -21,7 +21,6 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         NewWanderTargetPoint();
-        _animator = GetComponent<Animator>();
     }
     void FixedUpdate()
     {

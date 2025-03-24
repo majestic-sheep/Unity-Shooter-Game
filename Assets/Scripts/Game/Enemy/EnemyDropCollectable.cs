@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class EnemyDropCollectable : MonoBehaviour
 {
+    [SerializeField] private Transform _transform;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private GameObject _collectablePrefab;
     [SerializeField] private LootTable _lootTable;
-
     private float _dropYOffset;
     private void Start()
     {
-        _dropYOffset = GetComponent<Transform>().localScale.y * GetComponent<SpriteRenderer>().size.y * -0.4f;
+        _dropYOffset = _transform.localScale.y * _spriteRenderer.size.y * -0.2f;
     }
     public void DropCollectable()
     {

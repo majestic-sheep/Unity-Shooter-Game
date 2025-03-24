@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -24,13 +22,19 @@ public class LootTable
     [SerializeField] private int _fastWeight;
     [SerializeField] private int _splitWeight;
     [SerializeField] private int _heavyWeight;
+    [SerializeField] private int _gadgetWeight;
+    [SerializeField] private int _turretDroneWeight;
+    [SerializeField] private int _stimDroneWeight;
+    [SerializeField] private int _forceFieldWeight;
     public Item GetItemToDrop()
     {
         if (UnityEngine.Random.value > _dropChance) return null;
 
-        int rand = UnityEngine.Random.Range(0, _weaponWeight + _potionWeight);
+        int rand = UnityEngine.Random.Range(0, _weaponWeight + _potionWeight + _gadgetWeight);
         if (rand < _weaponWeight) return GetWeaponToDrop();
-        return GetPotionToDrop();
+        else rand -= _weaponWeight;
+        if (rand < _potionWeight) return GetPotionToDrop();
+        return GetGadgetToDrop();
     }
     private Weapon GetWeaponToDrop()
     {
@@ -84,6 +88,24 @@ public class LootTable
         if (rand < _lingerWeight) return "Linger";
         return "Missing Type";
     }
+    private Gadget GetGadgetToDrop()
+    {
+        return new Gadget(ChooseGadgetType());
+    }
+    private GadgetType ChooseGadgetType()
+    {
+        int rand = UnityEngine.Random.Range(0,
+            _turretDroneWeight +
+            _stimDroneWeight +
+            _forceFieldWeight);
+        if (rand < _turretDroneWeight) return GadgetType.TurretDrone;
+        else rand -= _turretDroneWeight;
+        if (rand < _stimDroneWeight)
+        {
+            return GadgetType.StimDrone;
+        }
+        else return GadgetType.ForceField;
+    }
     public LootTable ModifiedBy(LootTable other)
     {
         return ModifiedBy(other, 1);
@@ -110,6 +132,10 @@ public class LootTable
             _fastWeight = _fastWeight + magnitude * other._fastWeight,
             _splitWeight = _splitWeight + magnitude * other._splitWeight,
             _heavyWeight = _heavyWeight + magnitude * other._heavyWeight,
+            _gadgetWeight = _gadgetWeight + magnitude * other._gadgetWeight,
+            _turretDroneWeight = _turretDroneWeight + magnitude * other._turretDroneWeight,
+            _stimDroneWeight = _stimDroneWeight + magnitude * other._stimDroneWeight,
+            _forceFieldWeight = _forceFieldWeight + magnitude * other._forceFieldWeight,
         };
     }
 }

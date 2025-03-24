@@ -108,6 +108,10 @@ PrefabInstance:
       propertyPath: _killScore
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4013567764242213168, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8c6eb39157547dd4f95d84f15cbbfee9, type: 2}
     - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _dropChance
       value: 1
@@ -149,12 +153,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._gadgetWeight
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _lootTable._pistolWeight
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _lootTable._poisonWeight
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._potionWeight
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _lootTable._shotgunWeight
@@ -177,16 +189,8 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
-      propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[5].m_Target
-      value: 
-      objectReference: {fileID: 6877599907377627976}
-    - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DropCollectable
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
-      propertyPath: OnDied.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
-      value: SetTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 6920786664400288756, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _killScore
@@ -204,6 +208,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: a0838c2fe2a17114d8a580927dcd621d, type: 3}
+    - target: {fileID: 8357805783301543887, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_Size.x
+      value: 20.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357805783301543887, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_Size.y
+      value: 20.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357805783301543887, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a0838c2fe2a17114d8a580927dcd621d, type: 3}
+    - target: {fileID: 8357805783301543887, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9032248058807379862, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: m_Name
       value: Enemy 4
@@ -211,34 +231,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9032248058807379862, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6877599907377627976}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
---- !u!1 &345863184071228464 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9032248058807379862, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
-  m_PrefabInstance: {fileID: 8760694773349587878}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &6877599907377627976
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345863184071228464}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8c6eb39157547dd4f95d84f15cbbfee9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
