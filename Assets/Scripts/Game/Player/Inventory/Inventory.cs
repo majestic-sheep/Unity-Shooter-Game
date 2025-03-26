@@ -9,9 +9,6 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private GameObject _collectablePrefab;
 
-    public Sprite PistolSprite;
-    public Sprite RifleSprite;
-    public Sprite ShotgunSprite;
     [SerializeField] private SpriteRenderer _itemSpriteRenderer;
     public List<Item> Items = new();
     public int MaxInventorySize = 9;
@@ -31,7 +28,7 @@ public class Inventory : MonoBehaviour
         }
         Instance = this;
 
-        Add(new Weapon("pistol", "infiAmmo"));
+        Add(new Weapon(WeaponType.Pistol, WeaponModifierType.InfiAmmo));
         CurrentIndex = 0;
     }
     public void Update()
@@ -58,13 +55,16 @@ public class Inventory : MonoBehaviour
         {
             UpdateDisplayedItem();
         }
+        if (CurrentItem is Weapon weapon)
+        {
+            weapon.LastFireTime = Time.time;
+        }
     }
 
-    public void UseAmmo()
+    public void CheckIfWeaponConsumed()
     {
         Weapon current_weapon = (Weapon)CurrentItem;
         if (current_weapon.InfiAmmo) return;
-        current_weapon.Ammo -= 1;
         if (current_weapon.Ammo <= 0) RemoveCurrentItem();
     }
     public void ShiftCurrentWeaponIndexBy(int value)
@@ -87,7 +87,7 @@ public class Inventory : MonoBehaviour
     {
         if (CurrentItem is Weapon current_weapon)
         {
-            if (current_weapon.Modifier == "infiAmmo") return;
+            if (current_weapon.ModifierType == WeaponModifierType.InfiAmmo) return;
         }
         CreateCollectable(CurrentItem);
         RemoveCurrentItem();

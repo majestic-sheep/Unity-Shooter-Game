@@ -12,15 +12,14 @@ public class Bullet : MonoBehaviour
     public string TargetTag;
     private void Start()
     {
-        _camera = Camera.main;
         transform.localScale *= _mOfDamageToLocalScale * Damage + _bOfDamageToLocalScale;
-        CameraShake.Instance.ShakeMagnitude += Damage / 10;
+        _camera = Camera.main;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<EnemyMovement>())
         {
-            other.gameObject.GetComponent<Health>()?.Damage(Damage);
+            other.gameObject.GetComponent<Health>().Damage(Damage);
             Destroy(gameObject);
         }
     }

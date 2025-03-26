@@ -18,6 +18,7 @@ public class LootTable
     [SerializeField] private int _pistolWeight;
     [SerializeField] private int _rifleWeight;
     [SerializeField] private int _shotgunWeight;
+    [SerializeField] private int _smgWeight;
     [SerializeField] private float _modifierChance;
     [SerializeField] private int _fastWeight;
     [SerializeField] private int _splitWeight;
@@ -40,21 +41,28 @@ public class LootTable
     {
         return new Weapon(ChooseWeaponType(), ChooseWeaponModifier());
     }
-    private string ChooseWeaponType()
+    private WeaponType ChooseWeaponType()
     {
-        int rand = UnityEngine.Random.Range(0, _pistolWeight + _rifleWeight + _shotgunWeight);
-        if (rand < _pistolWeight) return "pistol";
-        else if (rand - _pistolWeight < _rifleWeight) return "rifle";
-        else return "shotgun";
+        int rand = UnityEngine.Random.Range(0, 
+            _pistolWeight + 
+            _rifleWeight + 
+            _shotgunWeight +
+            _smgWeight);
+        if (rand < _pistolWeight) return WeaponType.Pistol;
+        else rand -= _pistolWeight;
+        if (rand < _rifleWeight) return WeaponType.Rifle;
+        else rand -= _rifleWeight;
+        if (rand < _shotgunWeight) return WeaponType.Shotgun;
+        return WeaponType.SMG;
     }
-    private string ChooseWeaponModifier()
+    private WeaponModifierType ChooseWeaponModifier()
     {
-        if (UnityEngine.Random.value > _modifierChance) return "";
+        if (UnityEngine.Random.value > _modifierChance) return WeaponModifierType.None;
 
         int rand = UnityEngine.Random.Range(0, _fastWeight + _splitWeight + _heavyWeight);
-        if (rand < _fastWeight) return "fast";
-        if (rand - _fastWeight < _splitWeight) return "split";
-        else return "heavy";
+        if (rand < _fastWeight) return WeaponModifierType.Fast;
+        if (rand - _fastWeight < _splitWeight) return WeaponModifierType.Split;
+        else return WeaponModifierType.Heavy;
     }
     private Potion GetPotionToDrop()
     {
@@ -128,6 +136,7 @@ public class LootTable
             _pistolWeight = _pistolWeight + magnitude * other._pistolWeight,
             _rifleWeight = _rifleWeight + magnitude * other._rifleWeight,
             _shotgunWeight = _shotgunWeight + magnitude * other._shotgunWeight,
+            _smgWeight = _smgWeight + magnitude * other._smgWeight,
             _modifierChance = _modifierChance + magnitude * other._modifierChance,
             _fastWeight = _fastWeight + magnitude * other._fastWeight,
             _splitWeight = _splitWeight + magnitude * other._splitWeight,

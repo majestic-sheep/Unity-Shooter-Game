@@ -527,7 +527,7 @@ MonoBehaviour:
   _currentHealth: 10
   _destroyOnDeath: 1
   DamageMultiplier: 0
-  IsInvincible: 0
+  InvincibilityFactors: 0
   _destroyDelay: 1.25
   OnDied:
     m_PersistentCalls:
@@ -688,7 +688,8 @@ MonoBehaviour:
     _weaponWeight: 12
     _pistolWeight: 6
     _rifleWeight: 5
-    _shotgunWeight: 4
+    _shotgunWeight: 5
+    _smgWeight: 5
     _modifierChance: 0.5
     _fastWeight: 4
     _splitWeight: 3

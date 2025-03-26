@@ -14,40 +14,6 @@ public class PlayerUseItem : MonoBehaviour
     public float DamageMultiplier;
 
     private bool _firing;
-    private float _lastFireTime = -1000f;
-    private Weapon CurrentWeapon
-    {
-        get
-        {
-            if (Inventory.Instance.CurrentItem is Weapon weapon)
-            {
-                return weapon;
-            }
-            return null;
-        }
-    }
-    private Potion CurrentPotion
-    {
-        get
-        {
-            if (Inventory.Instance.CurrentItem is Potion potion)
-            {
-                return potion;
-            }
-            return null;
-        }
-    }
-    private Gadget CurrentGadget
-    {
-        get
-        {
-            if (Inventory.Instance.CurrentItem is Gadget gadget)
-            {
-                return gadget;
-            }
-            return null;
-        }
-    }
     void Awake()
     {
         if (Instance != null)
@@ -59,15 +25,20 @@ public class PlayerUseItem : MonoBehaviour
     }
     void Update()
     {
-        if (CurrentWeapon == null) return;
-
-        if (_firing && Time.time - _lastFireTime >= CurrentWeapon.FireDelay)
+        if (Inventory.Instance.CurrentItem is Weapon weapon)
         {
-            for (int i = 0; i < CurrentWeapon.BulletCount; i++)
-                FireBullet();
-            _lastFireTime = Time.time;
+            if (_firing && Time.time - weapon.LastFireTime >= weapon.CurrentFireDelay)
+            {
+                Vector3 angleToFireIn;
+                if (_heldGun.transform.lossyScale.x > 0)
+                    angleToFireIn = _heldGun.transform.right;
+                else
+                    angleToFireIn = (Vector3.zero - _heldGun.transform.right);
 
-            Inventory.Instance.UseAmmo();
+                weapon.Fire(_muzzleTransform.position, angleToFireIn, true);
+
+                Inventory.Instance.CheckIfWeaponConsumed();
+            }
         }
     }
     public void OnUseItem(InputValue inputValue)
@@ -76,7 +47,7 @@ public class PlayerUseItem : MonoBehaviour
             return;
         if (inputValue.isPressed)
         {
-            if (CurrentWeapon != null)
+            if (Inventory.Instance.CurrentItem is Weapon)
             {
                 _firing = true;
             }
@@ -86,36 +57,15 @@ public class PlayerUseItem : MonoBehaviour
             _firing = false;
             return;
         }
-        if (CurrentPotion != null)
+        if (Inventory.Instance.CurrentItem is Potion potion)
         {
-            PotionManager.Instance.ExecutePotionEffect(CurrentPotion);
+            PotionManager.Instance.ExecutePotionEffect(potion);
             Inventory.Instance.RemoveCurrentItem();
         }
-        else if (CurrentGadget != null)
+        else if (Inventory.Instance.CurrentItem is Gadget gadget)
         {
-            CurrentGadget.Deploy();
+            gadget.Deploy();
             Inventory.Instance.RemoveCurrentItem();
         }
-    }
-    private void FireBullet()
-    {
-        Vector3 angleToFireIn;
-        if (_heldGun.transform.lossyScale.x > 0)
-            angleToFireIn = _heldGun.transform.right;
-        else
-            angleToFireIn = (Vector3.zero - _heldGun.transform.right);
-
-        GameObject bullet = Instantiate(_bulletPrefab, _muzzleTransform.position, Quaternion.identity);
-        Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
-        rigidbody.velocity = CurrentWeapon.BulletSpeed * angleToFireIn;
-        rigidbody.velocity += new Vector2(
-            Random.Range(
-                -CurrentWeapon.BulletVelocityMargin,
-                CurrentWeapon.BulletVelocityMargin),
-            Random.Range(
-                -CurrentWeapon.BulletVelocityMargin,
-                CurrentWeapon.BulletVelocityMargin));
-
-        bullet.ConvertTo<Bullet>().Damage = CurrentWeapon.BulletDamage * DamageMultiplier;
     }
 }

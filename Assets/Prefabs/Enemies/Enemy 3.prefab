@@ -121,6 +121,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _lootTable._smgWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023730552477937009, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _lootTable._dropChance
       value: 0.1
       objectReference: {fileID: 0}

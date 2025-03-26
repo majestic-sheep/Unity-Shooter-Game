@@ -738,6 +738,7 @@ GameObject:
   - component: {fileID: 539775495}
   - component: {fileID: 539775490}
   - component: {fileID: 539775491}
+  - component: {fileID: 539775498}
   - component: {fileID: 539775492}
   - component: {fileID: 539775494}
   - component: {fileID: 539775496}
@@ -936,6 +937,7 @@ MonoBehaviour:
     _pistolWeight: 0
     _rifleWeight: 0
     _shotgunWeight: 0
+    _smgWeight: 0
     _modifierChance: 0
     _fastWeight: 0
     _splitWeight: 0
@@ -959,6 +961,7 @@ MonoBehaviour:
     _pistolWeight: -1
     _rifleWeight: 0
     _shotgunWeight: 0
+    _smgWeight: 0
     _modifierChance: 0.2
     _fastWeight: 0
     _splitWeight: 0
@@ -1014,6 +1017,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MouseIsOverScreen: 0
+--- !u!114 &539775498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539775485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd17a98063b6a3419f5c9a4d0fa4573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 905713659577773916, guid: 505d33efc362fc94a8556009fd303895, type: 3}
+  PistolSprite: {fileID: 21300000, guid: 1f581d6099dd6af47a780d0afd72cf97, type: 3}
+  RifleSprite: {fileID: 21300000, guid: e303090f29a8e844984ba67513d48c93, type: 3}
+  ShotgunSprite: {fileID: 21300000, guid: 5ad7d543e8ae2124c82d7c6ec374ec4b, type: 3}
+  SmgSprite: {fileID: 21300000, guid: a7c9f9a6df2dd0249aef86e80c54bd68, type: 3}
 --- !u!1 &1182327497
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,7 +1815,7 @@ MonoBehaviour:
   _currentHealth: 100
   _destroyOnDeath: 0
   DamageMultiplier: 0
-  IsInvincible: 0
+  InvincibilityFactors: 0
   _destroyDelay: 0
   OnDied:
     m_PersistentCalls:
@@ -1967,9 +1987,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collectablePrefab: {fileID: 1735077963604373599, guid: d4953b4ad6da0184fa50fc5b3b4990a0, type: 3}
-  PistolSprite: {fileID: 21300000, guid: 1f581d6099dd6af47a780d0afd72cf97, type: 3}
-  RifleSprite: {fileID: 21300000, guid: e303090f29a8e844984ba67513d48c93, type: 3}
-  ShotgunSprite: {fileID: 21300000, guid: 5ad7d543e8ae2124c82d7c6ec374ec4b, type: 3}
   _itemSpriteRenderer: {fileID: 1246953743}
   MaxInventorySize: 9
 --- !u!114 &1972815772
