@@ -33,6 +33,13 @@ public class Inventory : MonoBehaviour
     }
     public void Update()
     {
+        if (!PauseManager.Instance.Paused)
+        {
+            ShiftOnMouseScroll();
+        }
+    }
+    private void ShiftOnMouseScroll()
+    {
         int value = (int)Mouse.current.scroll.ReadValue().normalized.y;
         if (value == 0) return;
 
@@ -81,7 +88,10 @@ public class Inventory : MonoBehaviour
     }
     private void OnDrop(InputValue inputValue)
     {
-        DropCurrentItem();
+        if (!PauseManager.Instance.Paused)
+        {
+            DropCurrentItem();
+        }
     }
     private void DropCurrentItem()
     {

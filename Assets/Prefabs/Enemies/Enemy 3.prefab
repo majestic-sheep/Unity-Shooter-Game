@@ -77,6 +77,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1465344284032914790, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _acceleration
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465344284032914790, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _movementSpeed
       value: 15
       objectReference: {fileID: 0}
@@ -141,6 +145,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: DestroyDelay
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _destroyDelay
       value: 0.25
       objectReference: {fileID: 0}
@@ -150,6 +158,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
       propertyPath: _maximumHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5589525271739089523, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}
+      propertyPath: _colorLerpFactor
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7175661335821184716, guid: 6fdf461675b2b6341aa61210ebd86135, type: 3}

@@ -475,14 +475,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f3ad651a82ab74a8d7bc9a42f3b133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 4013567764242213168}
   _rigidbody: {fileID: 1642779420243545764}
+  Velocity: {x: 0, y: 0}
+  _acceleration: 0.3
+  _animator: {fileID: 4013567764242213168}
   _enemyAwareness: {fileID: 1164217623290532656}
   _targetDirection: {x: 0, y: 0}
   _wanderDistance: 8
   _newWanderTargetPointDelay: 2
   _movementSpeed: 10
-  _acceleration: 0.3
 --- !u!114 &1164217623290532656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,12 +524,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654b3db814321994d91c79f051438a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 8357805783301543887}
   _maximumHealth: 10
   _currentHealth: 10
   _destroyOnDeath: 1
   DamageMultiplier: 0
   InvincibilityFactors: 0
-  _destroyDelay: 1.25
+  DestroyDelay: 1.25
+  _staggerUpdateFactor: 0.9
+  _staggerRequiredForKnockback: 2
+  _knockbackMagnitude: 20
+  _stagger: 0
+  _colorLerpFactor: 0.2
   OnDied:
     m_PersistentCalls:
       m_Calls:

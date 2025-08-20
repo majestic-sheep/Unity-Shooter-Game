@@ -66,7 +66,7 @@ public class WeaponManager : MonoBehaviour
             Random.Range(-weapon.BulletVelocityMargin, weapon.BulletVelocityMargin),
             Random.Range(-weapon.BulletVelocityMargin, weapon.BulletVelocityMargin));
 
-        bullet.ConvertTo<Bullet>().Damage = weapon.BulletDamage;
+        bullet.ConvertTo<Bullet>().Damage = weapon.BulletDamage * PlayerUseItem.Instance.DamageMultiplier;
     }
     private void ShakeScreen(float totalDamage)
     {

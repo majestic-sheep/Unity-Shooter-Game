@@ -28,6 +28,10 @@ public class HeldGunPositioning : MonoBehaviour
     }
     void Update()
     {
+        if (PauseManager.Instance.Paused)
+        {
+            return;
+        }
         Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
         Vector2 mouseWorldPos = _camera.ScreenToWorldPoint(mouseScreenPos);
         if (mouseWorldPos.x < _playerTransform.position.x ^ _playerTransform.localScale.x < 0)

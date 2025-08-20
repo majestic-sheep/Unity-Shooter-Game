@@ -4,10 +4,9 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : Movement
 {
     [SerializeField] private Animator _animator;
-    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private EnemyAwareness _enemyAwareness;
     [SerializeField] private Vector2 _targetDirection;
     [SerializeField] private float _wanderDistance;
@@ -16,8 +15,6 @@ public class EnemyMovement : MonoBehaviour
     private float _lastNewWanderTargetPointTime;
 
     [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _acceleration;
-    private Vector2 _velocity = Vector2.zero;
     private void Awake()
     {
         NewWanderTargetPoint();
@@ -56,8 +53,8 @@ public class EnemyMovement : MonoBehaviour
     }
     private void SetVelocity()
     {
-        _velocity = Vector2.Lerp(_velocity, _movementSpeed * _targetDirection, _acceleration);
-        _rigidbody.velocity = _velocity;
+        Velocity = Vector2.Lerp(Velocity, _movementSpeed * _targetDirection, _acceleration);
+        _rigidbody.velocity = Velocity;
     }
     private void UpdateGraphics()
     {

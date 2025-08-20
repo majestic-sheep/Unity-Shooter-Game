@@ -4,16 +4,13 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Movement
 {
     public static PlayerMovement Instance;
 
     [SerializeField] private Animator _animator;
-    [SerializeField] private Rigidbody2D _rigidbody;
     private Vector2 _movementInput;
     public float MovementSpeed;
-    [SerializeField] private float _acceleration;
-    private Vector2 _velocity = Vector2.zero;
     void Awake()
     {
         if (Instance != null)
@@ -25,9 +22,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _velocity = Vector2.Lerp(_velocity, _movementInput * MovementSpeed, _acceleration);
+        Velocity = Vector2.Lerp(Velocity, _movementInput * MovementSpeed, _acceleration);
         ClampMovementToScreenSize();
-        _rigidbody.velocity = _velocity;
+        _rigidbody.velocity = Velocity;
         SetAnimation();
     }
     private void OnMove(InputValue inputValue)
